@@ -180,13 +180,13 @@
                 <div style="color: #3d3830; font-size: 15.5px; margin: 8px 0; font-weight: 600;">📍 المكان: صالة الأفراح - [اكتب المدينة أو القاعة هنا]</div>
             </div>
 
-            <!-- نموذج تأكيد الحضور المصلح وبدون حقل مرافقين -->
+            <!-- نموذج تأكيد الحضور المصلح وبدون حقل مرافقين للـ Formspree -->
             <div class="rsvp-form" id="rsvp-section">
                 <h3>تأكيد الحضور</h3>
                 <form id="weddingForm">
-                    <input type="text" id="guestName" placeholder="الاسم الكريم" required>
+                    <input type="text" name="name" id="guestName" placeholder="الاسم الكريم" required>
                     
-                    <select id="attendanceStatus" required>
+                    <select name="status" id="attendanceStatus" required>
                         <option value="" disabled selected>هل ستشرفنا بالحضور؟</option>
                         <option value="أوافق وبكل سرور">أوافق وبكل سرور</option>
                         <option value="أعتذر لظروف خاصة">أعتذر وأتمنى لكم الفرحة</option>
@@ -200,7 +200,7 @@
     </div>
 
 <script>
-    const FORMSPREE_URL = 'https://formspree.io';
+    const FORMSPREE_URL = 'https://formspree.io/f/xgaowyqv';
     const video = document.getElementById('introVideo');
 
     // التحكم في الفيديو والموسيقى
@@ -246,9 +246,7 @@
         submitBtn.disabled = true;
         msgDiv.innerText = "جاري إرسال ردك...";
 
-        const formData = new FormData();
-        formData.append("guestName", document.getElementById('guestName').value);
-        formData.append("attendanceStatus", document.getElementById('attendanceStatus').value);
+        const formData = new FormData(this);
 
         fetch(FORMSPREE_URL, {
             method: 'POST',
