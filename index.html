@@ -33,105 +33,77 @@
       overflow: hidden;
     }
 
-    /* ================= المشهد الأول: تصميم الظرف العاجي المحفور ================= */
-    .envelope-scene {
-      height: 100vh;
-      background: radial-gradient(circle, #fcf9f2 0%, #ebe2d3 100%);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      padding: 20px;
-    }
+   /* ================= تصميم الظرف الواقعي ================= */
+.envelope-card {
+  width: 100%;
+  max-width: 350px;
+  height: 480px;
+  background: #fdfbf7;
+  border-radius: 8px;
+  position: relative;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+  border: 1px solid #e2d5c3;
+  overflow: hidden;
+}
 
-    .envelope-card {
-      width: 100%;
-      max-width: 350px;
-      height: 520px;
-      background: #f7f1e5;
-      border-radius: 12px;
-      position: relative;
-      box-shadow: inset 0 0 15px rgba(255,255,255,0.8), 0 12px 30px rgba(110, 85, 60, 0.18);
-      border: 1px solid #e2d5c3;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
+/* الغطاء العلوي المثلث الشكل مع ظلال حقيقية */
+.top-flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background: #f8f3ea;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  z-index: 4;
+  filter: drop-shadow(0px 4px 5px rgba(0,0,0,0.1));
+  transition: transform 0.8s ease-in-out;
+  transform-origin: top;
+  border-bottom: 1px solid #e3d3bd;
+}
 
-    .embossed-pattern-bg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: radial-gradient(#d3c3ad 1px, transparent 1px);
-      background-size: 16px 16px;
-      opacity: 0.25;
-    }
+/* الجوانب السفلى للظرف (الطيات الجانبية) */
+.envelope-card::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 280px;
+  background: #f3ebd9;
+  clip-path: polygon(0 100%, 100% 100%, 100% 20%, 50% 50%, 0 20%);
+  z-index: 2;
+  box-shadow: inset 0 2px 10px rgba(0,0,0,0.05);
+}
 
-    .top-flap {
-      position: absolute;
-      top: 0;
-      width: 100%;
-      height: 220px;
-      background: #f3ebd9;
-      clip-path: polygon(0 0, 100% 0, 50% 100%);
-      border-bottom: 2px solid #e0d1bc;
-      z-index: 3;
-      transition: transform 0.8s ease-in-out;
-      transform-origin: top;
-    }
+.envelope-card.open .top-flap {
+  transform: rotateX(180deg);
+  z-index: 1;
+}
 
-    .envelope-card.open .top-flap {
-      transform: rotateX(180deg);
-      z-index: 0;
-    }
+/* الختم الشمعي الواقعي */
+.cream-seal {
+  position: absolute;
+  top: 185px; /* يوضع تماماً على رأس المثلث */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 75px;
+  height: 75px;
+  background: radial-gradient(circle, #fcfaf5 30%, #e3d2bc 100%);
+  border-radius: 50%;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2), inset 0 2px 4px rgba(255,255,255,0.8);
+  border: 2px solid #d4c2a8;
+  cursor: pointer;
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.3s;
+}
 
-    /* الختم الشمعي الكريمي */
-    .cream-seal {
-      position: absolute;
-      top: 48%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 95px;
-      height: 95px;
-      background: radial-gradient(circle, #fcfaf5 0%, #e8dbc8 100%);
-      border-radius: 50%;
-      box-shadow: 0 10px 22px rgba(0,0,0,0.18), inset 0 3px 6px rgba(255,255,255,0.9);
-      border: 2px solid #dcc9b0;
-      cursor: pointer;
-      z-index: 5;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: transform 0.3s, opacity 0.5s;
-    }
-
-    .cream-seal:hover {
-      transform: translate(-50%, -50%) scale(1.05);
-    }
-
-    .seal-inner-flower {
-      text-align: center;
-      font-size: 18px;
-      color: #8c7151;
-      line-height: 1.1;
-    }
-
-    .click-to-open-text {
-      position: absolute;
-      top: 61%;
-      font-family: 'Amiri', serif;
-      font-size: 19px;
-      color: #8c7151;
-      letter-spacing: 1px;
-      z-index: 4;
-      transition: opacity 0.4s;
-    }
-
+.cream-seal:hover {
+  transform: translateX(-50%) scale(1.08);
+}
     /* ================= المشهد الثاني: التصميم الداخلي ================= */
     .hero-header {
       height: 480px;
