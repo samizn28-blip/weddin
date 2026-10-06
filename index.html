@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>دعوة زفاف - أميرة ويوسف</title>
   
-  <!-- الخطوط العربية والأجنبية -->
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
   
   <style>
@@ -17,10 +16,12 @@
       margin: 0;
       padding: 0;
       font-family: 'Amiri', serif;
-      background-color: #f5efe6;
+      background-color: #d1c5b4;
       color: #4a3e3d;
       display: flex;
       justify-content: center;
+      align-items: center;
+      min-height: 100vh;
     }
 
     .invitation-container {
@@ -28,95 +29,68 @@
       max-width: 430px;
       background: #fdfbf7;
       min-height: 100vh;
-      box-shadow: 0 0 35px rgba(0,0,0,0.12);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.25);
       position: relative;
       overflow: hidden;
     }
 
-   /* ================= تصميم الظرف الواقعي ================= */
-.envelope-card {
-  width: 100%;
-  max-width: 350px;
-  height: 480px;
-  background: #fdfbf7;
-  border-radius: 8px;
-  position: relative;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-  border: 1px solid #e2d5c3;
-  overflow: hidden;
-}
+    /* ================= المشهد الأول: الظرف الفاخر المزخرف ================= */
+    .envelope-scene {
+      height: 100vh;
+      background: #c8bcab;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      padding: 10px;
+    }
 
-/* الغطاء العلوي المثلث الشكل مع ظلال حقيقية */
-.top-flap {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 200px;
-  background: #f8f3ea;
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
-  z-index: 4;
-  filter: drop-shadow(0px 4px 5px rgba(0,0,0,0.1));
-  transition: transform 0.8s ease-in-out;
-  transform-origin: top;
-  border-bottom: 1px solid #e3d3bd;
-}
+    /* كرت الظرف المعتمد على الصورة المزخرفة الحقيقية */
+    .envelope-card-bg {
+      width: 100%;
+      max-width: 380px;
+      height: 600px;
+      border-radius: 12px;
+      background-image: url('https://mithaq-invitation.com/static/media/envelope.jpg'); /* صورة الظرف المزخرف */
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+      cursor: pointer;
+      transition: transform 0.6s ease, opacity 0.6s ease;
+    }
 
-/* الجوانب السفلى للظرف (الطيات الجانبية) */
-.envelope-card::before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 280px;
-  background: #f3ebd9;
-  clip-path: polygon(0 100%, 100% 100%, 100% 20%, 50% 50%, 0 20%);
-  z-index: 2;
-  box-shadow: inset 0 2px 10px rgba(0,0,0,0.05);
-}
+    /* منطقة الضغط التفاعلية فوق الختم */
+    .clickable-seal-area {
+      position: absolute;
+      top: 48%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 10;
+    }
 
-.envelope-card.open .top-flap {
-  transform: rotateX(180deg);
-  z-index: 1;
-}
+    .envelope-card-bg.open-anim {
+      transform: scale(1.08);
+      opacity: 0;
+    }
 
-/* الختم الشمعي الواقعي */
-.cream-seal {
-  position: absolute;
-  top: 185px; /* يوضع تماماً على رأس المثلث */
-  left: 50%;
-  transform: translateX(-50%);
-  width: 75px;
-  height: 75px;
-  background: radial-gradient(circle, #fcfaf5 30%, #e3d2bc 100%);
-  border-radius: 50%;
-  box-shadow: 0 6px 15px rgba(0,0,0,0.2), inset 0 2px 4px rgba(255,255,255,0.8);
-  border: 2px solid #d4c2a8;
-  cursor: pointer;
-  z-index: 5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: transform 0.3s;
-}
-
-.cream-seal:hover {
-  transform: translateX(-50%) scale(1.08);
-}
-    /* ================= المشهد الثاني: التصميم الداخلي ================= */
+    /* ================= المشهد الثاني: التفاصيل الداخلية ================= */
     .hero-header {
-      height: 480px;
+      height: 450px;
       background: url('https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80') center/cover no-repeat;
       position: relative;
       display: flex;
       align-items: flex-end;
       justify-content: center;
-      padding-bottom: 40px;
+      padding-bottom: 30px;
     }
 
     .hero-overlay {
-      background: linear-gradient(to top, rgba(253, 251, 247, 1) 15%, rgba(253, 251, 247, 0.2) 100%);
+      background: linear-gradient(to top, rgba(253, 251, 247, 1) 20%, rgba(253, 251, 247, 0.1) 100%);
       width: 100%;
       padding: 40px 20px 10px;
       text-align: center;
@@ -124,7 +98,7 @@
 
     .names-title {
       font-family: 'Great Vibes', cursive;
-      font-size: 55px;
+      font-size: 52px;
       color: #7a5c28;
       margin: 0;
       font-weight: normal;
@@ -174,7 +148,7 @@
       color: #333;
     }
 
-    /* العداد التنازلي Countdown */
+    /* العداد التنازلي */
     .section-title-en {
       font-family: 'Great Vibes', cursive;
       font-size: 38px;
@@ -211,7 +185,7 @@
       color: #777;
     }
 
-    /* الجدول الزمني Timeline */
+    /* Timeline */
     .timeline {
       display: flex;
       flex-direction: column;
@@ -246,7 +220,6 @@
       font-size: 17px;
     }
 
-    /* الخريطة والموقع */
     .venue-img {
       width: 100%;
       height: 180px;
@@ -263,7 +236,6 @@
       padding: 12px 25px;
       border-radius: 25px;
       font-size: 16px;
-      transition: background 0.3s;
     }
 
     /* Formspree RSVP */
@@ -314,10 +286,8 @@
       border-radius: 25px;
       cursor: pointer;
       margin-top: 10px;
-      transition: background 0.3s;
     }
 
-    /* Floating Music Button */
     .music-btn {
       position: fixed;
       bottom: 20px;
@@ -350,28 +320,14 @@
 
   <div class="invitation-container">
 
-    <!-- المشهد الأول: الظرف العاجي المحفور -->
+    <!-- المشهد الأول: الظرف الفاخر المزخرف تماماً مثل الصورة -->
     <section class="envelope-scene" id="envelopeScene">
-      <div class="envelope-card">
-        
-        <div class="top-flap" id="topFlap"></div>
-
-        <div class="envelope-body">
-          <div class="embossed-pattern-bg"></div>
-        </div>
-
-        <!-- الختم الشمعي الكريمي -->
-        <div class="cream-seal" id="waxSeal">
-          <div class="seal-inner-flower">
-            🌿<br>🌸
-          </div>
-        </div>
-
-        <p class="click-to-open-text" id="openText">اضغط للفتح</p>
+      <div class="envelope-card-bg" id="envelopeBg">
+        <div class="clickable-seal-area" id="sealClickArea"></div>
       </div>
     </section>
 
-    <!-- المشهد الثاني: التفاصيل الداخلية -->
+    <!-- المشهد الثاني: الدعوة الداخلية -->
     <main class="invitation-content hidden" id="invitationContent">
       
       <header class="hero-header">
@@ -499,22 +455,15 @@
   </div>
 
   <script>
-    // فتح الظرف والانتقال للمشهد الرئيسي
-    document.getElementById('waxSeal').addEventListener('click', function() {
-      const envelopeCard = document.querySelector('.envelope-card');
-      const waxSeal = document.getElementById('waxSeal');
-      const openText = document.getElementById('openText');
+    // حدث فتح الظرف عند النقر على أي مكان في الظرف أو الختم
+    document.getElementById('envelopeBg').addEventListener('click', function() {
+      const envelopeBg = document.getElementById('envelopeBg');
       const envelopeScene = document.getElementById('envelopeScene');
       const invitationContent = document.getElementById('invitationContent');
       const musicBtn = document.getElementById('music-toggle');
       const music = document.getElementById('bg-music');
 
-      waxSeal.style.opacity = '0';
-      openText.style.opacity = '0';
-      
-      setTimeout(() => {
-        envelopeCard.classList.add('open');
-      }, 200);
+      envelopeBg.classList.add('open-anim');
 
       setTimeout(() => {
         envelopeScene.style.display = 'none';
@@ -522,9 +471,9 @@
         musicBtn.classList.remove('hidden');
 
         if (music && music.src) {
-          music.play().catch(e => console.log("Music autoplay blocked"));
+          music.play().catch(e => console.log("Music blocked"));
         }
-      }, 1200);
+      }, 500);
     });
 
     // التحكم بالصوت
@@ -532,7 +481,8 @@
     const musicBtn = document.getElementById('music-toggle');
     const musicIcon = document.getElementById('music-icon');
 
-    musicBtn.addEventListener('click', () => {
+    musicBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
       if (music.paused) {
         music.play();
         musicIcon.textContent = '⏸';
