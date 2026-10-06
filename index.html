@@ -6,19 +6,17 @@
   <title>دعوة زفاف - أريج ومحمد</title>
   
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
-  <!-- مكتبة الاحتفال بتساقط الورد والقلوب -->
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  <!-- مكتبة تساقط الورد والقلوب مع إضافة defer لسرعة الفتح على الآيفون -->
+  <script defer src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Amiri', serif;
-      background-color: #1a1614;
+      font-family: 'Amiri', -apple-system, BlinkMacSystemFont, serif;
+      background-color: #12100e;
       color: #3e322b;
       display: flex;
       justify-content: center;
@@ -30,10 +28,9 @@
     .invitation-container {
       width: 100%;
       max-width: 430px;
-      background: radial-gradient(circle at 10% 20%, rgba(255, 248, 235, 0.95), rgba(240, 226, 205, 0.9)), 
-                  url('bg-crystal.jpg') center/cover no-repeat fixed #fdfbf7;
+      background: radial-gradient(circle at 50% 30%, #fffdfa 0%, #f4eae0 70%, #e8d7c3 100%);
       min-height: 100vh;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
       position: relative;
       overflow: hidden;
     }
@@ -50,49 +47,67 @@
       filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
     }
 
-    /* ================= المشهد الأول: الظرف (مضمون بدون شاشة سوداء) ================= */
+    /* ================= المشهد الأول: الظرف ================= */
     .envelope-scene {
       height: 100vh;
-      background: #231e1a;
+      background: radial-gradient(circle, #2c241d 0%, #12100e 100%);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      position: relative;
       padding: 20px;
     }
 
     .envelope-card {
-      width: 100%;
-      max-width: 320px;
-      height: 480px;
-      border-radius: 16px;
-      background-color: #d8c8b4;
-      background-image: url('enve.jpg');
-      background-size: cover;
-      background-position: center;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.5), inset 0 0 0 2px rgba(212,175,55,0.4);
+      width: 300px;
+      height: 420px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #d8c3a5 0%, #b89b72 100%);
+      border: 2px solid #dfc38c;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.6), inset 0 0 20px rgba(255,255,255,0.3);
       cursor: pointer;
-      position: relative;
-      transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease;
       display: flex;
+      flex-direction: column;
       justify-content: center;
-      align-items: flex-end;
-      padding-bottom: 30px;
+      align-items: center;
+      text-align: center;
+      padding: 25px;
+      transition: transform 0.6s ease, opacity 0.6s ease;
+      position: relative;
     }
 
     .envelope-card.open-anim {
-      transform: scale(1.1) translateY(-40px);
+      transform: scale(1.1) translateY(-50px);
       opacity: 0;
+    }
+
+    .envelope-seal {
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(135deg, #8c6a2d, #5a4119);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #dfc38c;
+      font-size: 36px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      margin-bottom: 20px;
+      border: 2px solid #e3cc9e;
+    }
+
+    .envelope-card h3 {
+      font-family: 'Aref Ruqaa', serif;
+      font-size: 32px;
+      color: #3d2e1b;
+      margin: 0;
     }
 
     .tap-hint {
       color: #e6cb9a;
-      font-size: 19px;
+      font-size: 18px;
       margin-top: 25px;
-      letter-spacing: 1px;
       animation: bounce 1.6s infinite;
-      text-align: center;
     }
 
     @keyframes bounce {
@@ -100,42 +115,39 @@
       50% { transform: translateY(-8px); }
     }
 
-    /* ================= المشهد الثاني: صفحة الدعوة الرئيسية ================= */
+    /* ================= المشهد الثاني: صفحة الدعوة ================= */
     .invitation-content {
-      background: rgba(253, 251, 247, 0.88);
-      backdrop-filter: blur(10px);
+      background: rgba(255, 253, 250, 0.92);
       min-height: 100vh;
     }
 
     .hero-header {
-      padding: 60px 20px 30px;
+      padding: 50px 20px 30px;
       text-align: center;
       border-bottom: 1px solid rgba(140, 106, 45, 0.2);
     }
 
     .names-title {
       font-family: 'Aref Ruqaa', serif;
-      font-size: 48px;
+      font-size: 46px;
       color: #7a5c28;
       margin: 0;
-      font-weight: bold;
-      text-shadow: 0 2px 5px rgba(122, 92, 40, 0.15);
     }
 
     .hero-date {
-      font-size: 21px;
+      font-size: 20px;
       color: #555;
       margin-top: 10px;
       font-weight: bold;
     }
 
     .card-section {
-      padding: 35px 25px;
+      padding: 30px 22px;
       border-bottom: 1px solid rgba(216, 195, 165, 0.4);
     }
 
     .bismillah {
-      font-size: 26px;
+      font-size: 24px;
       color: #8c6a2d;
       margin-bottom: 15px;
     }
@@ -153,46 +165,42 @@
       color: #4a403a;
     }
 
-    /* زر تقويم جوجل */
+    .quran-box-custom {
+      background: linear-gradient(135deg, #f0e4d2, #dcc4a3);
+      border: 1px solid #cbb28d;
+      border-radius: 16px;
+      padding: 35px 20px;
+      margin: 25px 0;
+      box-shadow: inset 0 0 15px rgba(255,255,255,0.6), 0 8px 20px rgba(0,0,0,0.06);
+    }
+
+    .quran-box-custom .icon {
+      font-size: 55px;
+      margin-bottom: 10px;
+    }
+
+    .quran-box-custom p {
+      font-size: 20px;
+      color: #5a431c;
+      margin: 0;
+      font-family: 'Aref Ruqaa', serif;
+    }
+
     .calendar-btn {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 8px;
       background: #ffffff;
       color: #7a5c28;
       border: 1px solid #d8c3a5;
-      padding: 10px 20px;
+      padding: 10px 18px;
       border-radius: 20px;
       font-size: 16px;
       font-weight: bold;
       text-decoration: none;
       margin-top: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-      transition: all 0.3s ease;
-    }
-
-    .calendar-btn:hover {
-      background: #7a5c28;
-      color: #fff;
-    }
-
-    /* صورة المصحف والدبلتين */
-    .quran-container {
-      position: relative;
-      margin: 25px 0;
-      border-radius: 16px;
-      padding: 5px;
-      background: linear-gradient(135deg, rgba(212,175,55,0.4), rgba(253,251,247,0.1));
-      box-shadow: 0 10px 25px rgba(0,0,0,0.12);
-    }
-
-    .quran-img {
-      width: 100%;
-      height: 290px;
-      object-fit: cover;
-      border-radius: 12px;
-      display: block;
-      background-color: #2b2623;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.04);
     }
 
     .event-date-details {
@@ -208,10 +216,9 @@
       color: #222;
     }
 
-    /* العداد التنازلي */
     .section-title {
       font-family: 'Aref Ruqaa', serif;
-      font-size: 32px;
+      font-size: 30px;
       color: #8c6a2d;
       margin-top: 0;
       margin-bottom: 20px;
@@ -220,37 +227,28 @@
     .countdown-timer {
       display: flex;
       justify-content: center;
-      gap: 12px;
+      gap: 10px;
       direction: rtl;
     }
 
     .time-box {
       background: rgba(245, 235, 224, 0.95);
-      padding: 10px 14px;
+      padding: 10px;
       border-radius: 10px;
-      min-width: 70px;
+      min-width: 68px;
       border: 1px solid #e3d5c3;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
     }
 
     .time-box span {
       display: block;
-      font-size: 25px;
+      font-size: 24px;
       font-weight: bold;
       color: #7a5c28;
     }
 
-    .time-box small {
-      font-size: 13px;
-      color: #666;
-    }
+    .time-box small { font-size: 12px; color: #666; }
 
-    /* جدول المواعيد */
-    .timeline {
-      display: flex;
-      flex-direction: column;
-      gap: 22px;
-    }
+    .timeline { display: flex; flex-direction: column; gap: 20px; }
 
     .timeline-row {
       display: flex;
@@ -272,7 +270,6 @@
       height: 12px;
       background: #d4af37;
       border-radius: 50%;
-      box-shadow: 0 0 8px rgba(212,175,55,0.6);
     }
 
     .timeline-row .event {
@@ -286,101 +283,73 @@
       background: #7a5c28;
       color: #fff;
       text-decoration: none;
-      padding: 12px 28px;
+      padding: 12px 26px;
       border-radius: 25px;
       font-size: 18px;
       margin-top: 15px;
-      box-shadow: 0 4px 12px rgba(122, 92, 40, 0.3);
     }
 
-    /* نموذج تأكيد الحضور */
-    .rsvp-form {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-      text-align: right;
-    }
+    .rsvp-form { display: flex; flex-direction: column; gap: 15px; text-align: right; }
 
-    .input-group label {
-      display: block;
-      font-size: 18px;
-      margin-bottom: 6px;
-      color: #444;
-    }
+    .input-group label { display: block; font-size: 17px; margin-bottom: 5px; color: #444; }
 
     .input-group input[type="text"] {
       width: 100%;
-      padding: 13px;
+      padding: 12px;
       border: 1px solid #d3c4b1;
       border-radius: 8px;
       background: #fff;
       font-size: 16px;
+      font-family: 'Amiri', serif;
     }
 
-    .radio-options {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      margin-top: 5px;
-    }
+    .radio-options { display: flex; flex-direction: column; gap: 10px; margin-top: 5px; }
 
-    .radio-btn {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      cursor: pointer;
-      font-size: 17px;
-    }
+    .radio-btn { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 16px; }
 
     .submit-btn {
       background: #8c6a2d;
       color: #fff;
       border: none;
-      padding: 14px;
-      font-size: 19px;
+      padding: 13px;
+      font-size: 18px;
       border-radius: 25px;
       cursor: pointer;
-      margin-top: 10px;
       font-family: 'Amiri', serif;
-      box-shadow: 0 4px 12px rgba(140, 106, 45, 0.3);
+      transition: background 0.3s;
+    }
+
+    .submit-btn:disabled {
+      background: #a89985;
+      cursor: not-allowed;
     }
 
     .thank-you-box {
       background: #f4ece1;
-      padding: 25px;
+      padding: 20px;
       border-radius: 12px;
       border: 1px solid #d8c3a5;
       text-align: center;
+      animation: fadeIn 0.5s ease-in-out;
     }
 
     .thank-you-box h4 {
-      font-size: 26px;
+      font-size: 24px;
       color: #7a5c28;
-      margin: 0 0 10px;
+      margin: 0 0 8px;
       font-family: 'Aref Ruqaa', serif;
     }
 
     .thank-you-box p {
-      font-size: 18px;
+      font-size: 17px;
       color: #444;
       margin: 0;
       line-height: 1.6;
     }
 
-    .music-btn {
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      width: 48px;
-      height: 48px;
-      background: #8c6a2d;
-      color: white;
-      border: none;
-      border-radius: 50%;
-      font-size: 20px;
-      z-index: 99;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      cursor: pointer;
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     .text-center { text-align: center; }
@@ -389,30 +358,27 @@
 </head>
 <body>
 
-  <audio id="bg-music" loop src="music.mp3"></audio>
-
-  <button id="music-toggle" class="music-btn hidden">
-    <span id="music-icon">⏸</span>
-  </button>
-
   <div id="floatingCouple" class="floating-couple hidden">👩‍❤️‍👨</div>
 
   <div class="invitation-container">
 
-    <!-- المشهد الأول: الظرف الفاخر (مضمون العمل بدون شاشة سوداء) -->
+    <!-- المشهد الأول: الظرف -->
     <section class="envelope-scene" id="envelopeScene">
-      <div class="envelope-card" id="envelopeCard"></div>
-      <div class="tap-hint">اضغط على الظرف لفتحه ✉️</div>
+      <div class="envelope-card" id="envelopeCard">
+        <div class="envelope-seal">💌</div>
+        <h3>دعوة زفاف</h3>
+        <p style="color: #5a4119; margin-top: 5px; font-weight: bold;">أريج & محمد</p>
+      </div>
+      <div class="tap-hint">اضغط على الظرف لفتحه ✨</div>
     </section>
 
-    <!-- المشهد الثاني: الدعوة كاملة -->
+    <!-- المشهد الثاني: صفحة الدعوة كاملة -->
     <main class="invitation-content hidden" id="invitationContent">
       
       <header class="hero-header">
         <h1 class="names-title">أريج & محمد</h1>
         <p class="hero-date">21 أكتوبر 2026<br>الساعة 4:00 مساءً</p>
         
-        <!-- زر إضافة الحفل إلى تقويم جوجل -->
         <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%D8%AD%D9%81%D9%84+%D8%B2%D9%81%D8%A7%D8%B9+%D8%A3%D8%B1%D9%8A%D8%AC+%D9%88%D9%85%D8%AD%D9%85%D8%AF&dates=20261021T160000/20261021T210000&details=%D9%86%D8%AA%D8%B4%D8%B1%D9%81+%D8%A8%D8%AD%D8%B6%D9%88%D8%B1%D9%83%D9%85+%D8%AD%D9%81%D9%84+%D8%B2%D9%81%D8%A7%D8%B9+%D8%A3%D8%B1%D9%8A%D8%AC+%D9%88%D9%85%D8%AD%D9%85%D8%AF+%D9%81%D9%8A+%D9%82%D8%A7%D8%B9%D8%A9+%D8%A7%D9%84%D8%AC%D9%84%D8%A7%D8%A1&location=%D9%82%D8%A7%D8%B9%D8%A9+%D8%A7%D9%84%D8%AC%D9%84%D8%A7%D8%A1" target="_blank" class="calendar-btn">
           📅 إضافة الحفل لتقويم جوجل
         </a>
@@ -425,8 +391,9 @@
           يتشرفان بدعوتكم لحضور حفل زفافهما وتتويج قصتهما بالرباط المقدس
         </p>
         
-        <div class="quran-container">
-          <img src="quran-rings.jpg" class="quran-img" alt="دبل الزفاف والمصحف الشريف">
+        <div class="quran-box-custom">
+          <div class="icon">📖 💍</div>
+          <p>" وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا "</p>
         </div>
 
         <p class="event-date-details">
@@ -473,7 +440,7 @@
       <!-- موقع الحفل -->
       <section class="card-section text-center">
         <h3 class="section-title">موقع الحفل</h3>
-        <div class="location-box">
+        <div>
           <p style="font-size: 22px; font-weight: bold; margin: 5px 0;">قاعة الجلاء</p>
           <a href="https://maps.google.com/?q=Al+Jalaa+Damascus" target="_blank" class="map-btn">
             📍 فتح الموقع على خرائط جوجل
@@ -481,32 +448,32 @@
         </div>
       </section>
 
-      <!-- تأكيد الحضور -->
+      <!-- تأكيد الحضور (مربوط بـ Formspree والإشعار الفوري) -->
       <section class="card-section text-center">
         <h3 class="section-title">تأكيد الحضور</h3>
         
         <div id="rsvpContainer">
-          <form id="customRsvpForm" class="rsvp-form">
+          <form id="customRsvpForm" class="rsvp-form" action="https://formspree.io/f/xgaowyqv" method="POST">
             <div class="input-group">
               <label>الاسم الكامل:</label>
-              <input type="text" id="guestName" required placeholder="يرجى كتابة الاسم الكريم">
+              <input type="text" name="الاسم" id="guestName" required placeholder="يرجى كتابة الاسم الكريم">
             </div>
 
             <div class="input-group">
               <label>هل ستتمكن من الحضور؟</label>
               <div class="radio-options">
                 <label class="radio-btn">
-                  <input type="radio" name="attendingStatus" value="حضور" checked>
+                  <input type="radio" name="حالة الحضور" value="يشرفني الحضور ببالغ السرور" checked>
                   <span>يشرفني الحضور ببالغ السرور</span>
                 </label>
                 <label class="radio-btn">
-                  <input type="radio" name="attendingStatus" value="اعتذار">
+                  <input type="radio" name="حالة الحضور" value="أعتذر عن الحضور لظروف طارئة">
                   <span>أعتذر عن الحضور لظروف طارئة</span>
                 </label>
               </div>
             </div>
 
-            <button type="submit" class="submit-btn">إرسال تأكيد الحضور</button>
+            <button type="submit" id="submitBtn" class="submit-btn">إرسال تأكيد الحضور</button>
           </form>
         </div>
       </section>
@@ -516,34 +483,45 @@
   </div>
 
   <script>
-    // إطلاق تأكير تساقط الورد والقلوب المبهج
-    function triggerConfetti() {
-      var duration = 3.5 * 1000;
-      var animationEnd = Date.now() + duration;
-
-      (function frame() {
-        confetti({
-          particleCount: 4,
-          angle: 60,
-          spread: 55,
-          origin: { x: 0 },
-          colors: ['#d4af37', '#f3e5ab', '#e0a96d', '#ffffff']
-        });
-        confetti({
-          particleCount: 4,
-          angle: 120,
-          spread: 55,
-          origin: { x: 1 },
-          colors: ['#d4af37', '#f3e5ab', '#e0a96d', '#ffffff']
-        });
-
-        if (Date.now() < animationEnd) {
-          requestAnimationFrame(frame);
-        }
-      }());
+    // بناء رسالة الشكر وتثبيتها
+    function renderThankYou(name, isAttending) {
+      const container = document.getElementById('rsvpContainer');
+      const text = isAttending 
+        ? 'أسعدتنا كثيراً بتأكيد حضورك، وننتظر بشوق مشاركتك فرحتنا في هذا اليوم المميز!' 
+        : 'نشكرك على إبلاغنا، ونتمنى أن تجمعنا المناسبات السعيدة القادمة بإذن الله.';
+      
+      container.innerHTML = `
+        <div class="thank-you-box">
+          <h4>شكراً لك يا ${name}! ❤️</h4>
+          <p>${text}</p>
+        </div>
+      `;
     }
 
-    // فتح الظرف والانتقال
+    // التحقق فور فتح الدعوة: هل أجاب هذا الهاتف سابقاً؟
+    function checkPreviousResponse() {
+      const savedRSVP = localStorage.getItem('user_has_responded');
+      if (savedRSVP) {
+        const data = JSON.parse(savedRSVP);
+        renderThankYou(data.name, data.isAttending);
+      }
+    }
+
+    // تأثير تساقط الورد والقلوب
+    function triggerConfetti() {
+      if (typeof confetti === 'function') {
+        var duration = 3 * 1000;
+        var animationEnd = Date.now() + duration;
+
+        (function frame() {
+          confetti({ particleCount: 3, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#d4af37', '#f3e5ab', '#e0a96d', '#ffffff'] });
+          confetti({ particleCount: 3, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#d4af37', '#f3e5ab', '#e0a96d', '#ffffff'] });
+          if (Date.now() < animationEnd) requestAnimationFrame(frame);
+        }());
+      }
+    }
+
+    // حركة فتح الظرف
     document.getElementById('envelopeCard').addEventListener('click', function() {
       const card = document.getElementById('envelopeCard');
       card.classList.add('open-anim');
@@ -551,40 +529,18 @@
       setTimeout(() => {
         document.getElementById('envelopeScene').style.display = 'none';
         document.getElementById('invitationContent').classList.remove('hidden');
-        document.getElementById('music-toggle').classList.remove('hidden');
         document.getElementById('floatingCouple').classList.remove('hidden');
 
-        // تشغيل تأثير تساقط الورد
         triggerConfetti();
-
-        const music = document.getElementById('bg-music');
-        if (music && music.src) {
-          music.play().catch(e => console.log("تشغيل الموسيقى"));
-        }
+        checkPreviousResponse(); // فحص الاستجابة السابقة فور فتح الظرف
       }, 550);
     });
 
-    // التحكم بالصوت
-    const music = document.getElementById('bg-music');
-    const musicBtn = document.getElementById('music-toggle');
-    const musicIcon = document.getElementById('music-icon');
-
-    musicBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (music.paused) {
-        music.play();
-        musicIcon.textContent = '⏸';
-      } else {
-        music.pause();
-        musicIcon.textContent = '▶';
-      }
-    });
-
-    // حركة العريس والعروسة عند التمرير
+    // حركة العريس والعروس عند السكرول
     window.addEventListener('scroll', () => {
       const couple = document.getElementById('floatingCouple');
       const scrollPos = window.scrollY;
-      couple.style.transform = `translateY(${-scrollPos * 0.12}px) rotate(${Math.sin(scrollPos * 0.01) * 12}deg)`;
+      couple.style.transform = `translateY(${-scrollPos * 0.1}px) rotate(${Math.sin(scrollPos * 0.01) * 10}deg)`;
     });
 
     // العداد التنازلي
@@ -606,24 +562,44 @@
       }
     }, 1000);
 
-    // تأكيد الحضور المباشر
-    document.getElementById('customRsvpForm').addEventListener('submit', function(e) {
+    // معالجة النموذج وتوصيله لـ Formspree بدون إعادة تحميل
+    const form = document.getElementById('customRsvpForm');
+    form.addEventListener('submit', function(e) {
       e.preventDefault();
-      
+
+      const btn = document.getElementById('submitBtn');
+      btn.innerText = 'جاري الإرسال...';
+      btn.disabled = true;
+
       const name = document.getElementById('guestName').value;
-      const status = document.querySelector('input[name="attendingStatus"]:checked').value;
+      const statusInput = document.querySelector('input[name="حالة الحضور"]:checked').value;
+      const isAttending = statusInput.includes("يشرفني");
 
-      let rsvps = JSON.parse(localStorage.getItem('wedding_rsvps') || '[]');
-      rsvps.push({ name: name, status: status, time: new Date().toLocaleString() });
-      localStorage.setItem('wedding_rsvps', JSON.stringify(rsvps));
+      const data = new FormData(form);
 
-      const container = document.getElementById('rsvpContainer');
-      container.innerHTML = `
-        <div class="thank-you-box">
-          <h4>شكراً لك يا ${name}! ❤️</h4>
-          <p>${status === 'حضور' ? 'أسعدتنا كثيراً بتأكيد حضورك، وننتظر بشوق مشاركتك فرحتنا في هذا اليوم المميز!' : 'نشكرك على إبلاغنا، ونتمنى أن تجمعنا المناسبات السعيدة القادمة بإذن الله.'}</p>
-        </div>
-      `;
+      // إرسال البيانات عبر AJAX إلى Formspree
+      fetch(form.action, {
+        method: form.method,
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(response => {
+        if (response.ok) {
+          // 1. حفظ عدم التكرار على هاتف الضيف
+          localStorage.setItem('user_has_responded', JSON.stringify({ name: name, isAttending: isAttending }));
+          // 2. إظهار رسالة الشكر فوراً
+          renderThankYou(name, isAttending);
+        } else {
+          alert('حدث خطأ أثناء الإرسال، يرجى المحاولة مرة أخرى.');
+          btn.innerText = 'إرسال تأكيد الحضور';
+          btn.disabled = false;
+        }
+      }).catch(error => {
+        alert('يرجى التأكد من الاتصال بالإنترنت والمحاولة مجدداً.');
+        btn.innerText = 'إرسال تأكيد الحضور';
+        btn.disabled = false;
+      });
     });
   </script>
 </body>
