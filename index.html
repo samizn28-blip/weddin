@@ -28,7 +28,6 @@
     .invitation-container {
       width: 100%;
       max-width: 430px;
-      /* خلفية المشهد الثاني (الزجاجية) */
       background: url('bg-crystal.jpg') center/cover no-repeat fixed #fdfbf7;
       min-height: 100vh;
       box-shadow: 0 10px 40px rgba(0,0,0,0.4);
@@ -36,7 +35,7 @@
       overflow: hidden;
     }
 
-    /* ================= حركة الوردة العائمة (التمرير/النزول والطلوع) ================= */
+    /* الوردة المتحركة عند التمرير */
     .floating-rose {
       position: fixed;
       right: 15px;
@@ -49,46 +48,38 @@
       filter: drop-shadow(0 4px 8px rgba(0,0,0,0.25));
     }
 
-    /* ================= المشهد الأول: فيديو الظرف ================= */
-    .video-scene {
+    /* ================= المشهد الأول: الظرف الفاخر المطابق 100% ================= */
+    .envelope-scene {
       height: 100vh;
-      background: #111;
+      background: #c8bcab;
       display: flex;
       justify-content: center;
       align-items: center;
       position: relative;
-      cursor: pointer;
+      padding: 10px;
     }
 
-    .envelope-video {
+    /* كرت الظرف المزخرف المعتمد على الصورة المطابقة */
+    .envelope-card-bg {
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      max-width: 380px;
+      height: 600px;
+      border-radius: 12px;
+      background-image: url('enve.jpg'); /* صورة الظرف الأول المزخرف */
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+      cursor: pointer;
+      transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.6s ease;
     }
 
-    .video-overlay {
-      position: absolute;
-      bottom: 50px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0, 0, 0, 0.6);
-      color: #fff;
-      padding: 12px 28px;
-      border-radius: 30px;
-      font-size: 18px;
-      backdrop-filter: blur(5px);
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      pointer-events: none;
-      animation: pulse 1.8s infinite;
+    .envelope-card-bg.open-anim {
+      transform: scale(1.12) translateY(-30px);
+      opacity: 0;
     }
 
-    @keyframes pulse {
-      0% { transform: translateX(-50%) scale(1); }
-      50% { transform: translateX(-50%) scale(1.06); }
-      100% { transform: translateX(-50%) scale(1); }
-    }
-
-    /* ================= المشهد الثاني: التفاصيل بالكامل بالعربية ================= */
+    /* ================= المشهد الثاني: صفحة الدعوة الرئيسية ================= */
     .invitation-content {
       background: rgba(253, 251, 247, 0.88);
       backdrop-filter: blur(8px);
@@ -107,7 +98,6 @@
       color: #7a5c28;
       margin: 0;
       font-weight: bold;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
 
     .hero-date {
@@ -247,28 +237,7 @@
       box-shadow: 0 4px 12px rgba(122, 92, 40, 0.3);
     }
 
-    /* قواعد اللباس */
-    .dress-details {
-      background: rgba(251, 247, 240, 0.9);
-      padding: 20px;
-      border-radius: 12px;
-      margin-top: 15px;
-      border: 1px dashed #d8c3a5;
-    }
-
-    .dress-details h4 {
-      margin: 10px 0 5px;
-      color: #7a5c28;
-      font-size: 20px;
-    }
-
-    .dress-details p {
-      margin: 0;
-      color: #555;
-      font-size: 17px;
-    }
-
-    /* نموذج التأكيد (بدون حقل عدد الأشخاص) */
+    /* نموذج التأكيد */
     .rsvp-form {
       display: flex;
       flex-direction: column;
@@ -349,21 +318,17 @@
     <span id="music-icon">⏸</span>
   </button>
 
-  <!-- عنصر الوردة المتحركة أثناء النزول والطلوع -->
+  <!-- الوردة المتحركة -->
   <img id="floatingRose" class="floating-rose hidden" src="https://cdn-icons-png.flaticon.com/512/744/744522.png" alt="وردة">
 
   <div class="invitation-container">
 
-    <!-- المشهد الأول: فيديو الظرف -->
-    <section class="video-scene" id="videoScene">
-      <video class="envelope-video" autoplay loop muted playsinline id="envelopeVideo">
-        <source src="envelope-video.mp4" type="video/mp4">
-        متصفحك لا يدعم تشغيل الفيديو.
-      </video>
-      <div class="video-overlay">اضغط لفتح الدعوة ✉️</div>
+    <!-- المشهد الأول: الظرف المطابق للصورة تماماً -->
+    <section class="envelope-scene" id="envelopeScene">
+      <div class="envelope-card-bg" id="envelopeBg"></div>
     </section>
 
-    <!-- المشهد الثاني: صفحة الدعوة الكاملة بالعربية -->
+    <!-- المشهد الثاني: صفحة الدعوة كاملة -->
     <main class="invitation-content hidden" id="invitationContent">
       
       <header class="hero-header">
@@ -439,20 +404,7 @@
         </div>
       </section>
 
-      <!-- قواعد اللباس -->
-      <section class="card-section text-center">
-        <h3 class="section-title">قواعد اللباس</h3>
-        <p class="dress-text">يسعدنا أن تشاركونا بأناقتكم في هذا اليوم المميز</p>
-        
-        <div class="dress-details">
-          <h4>السيدات</h4>
-          <p>فساتين سهرة أنيقة وراقية</p>
-          <h4 style="margin-top: 15px;">الرجال</h4>
-          <p>بدل رسمية كاملة وأنيقة</p>
-        </div>
-      </section>
-
-      <!-- نموذج تأكيد الحضور (بدون حقل عدد الأشخاص) -->
+      <!-- نموذج تأكيد الحضور -->
       <section class="card-section text-center">
         <h3 class="section-title">تأكيد الحضور</h3>
         
@@ -485,17 +437,27 @@
   </div>
 
   <script>
-    // فتح الدعوة
-    document.getElementById('videoScene').addEventListener('click', function() {
-      document.getElementById('videoScene').style.display = 'none';
-      document.getElementById('invitationContent').classList.remove('hidden');
-      document.getElementById('music-toggle').classList.remove('hidden');
-      document.getElementById('floatingRose').classList.remove('hidden');
-
+    // عند الضغط على الظرف ينفتح ويتلاشى
+    document.getElementById('envelopeBg').addEventListener('click', function() {
+      const envelopeBg = document.getElementById('envelopeBg');
+      const envelopeScene = document.getElementById('envelopeScene');
+      const invitationContent = document.getElementById('invitationContent');
+      const musicBtn = document.getElementById('music-toggle');
+      const floatingRose = document.getElementById('floatingRose');
       const music = document.getElementById('bg-music');
-      if (music && music.src) {
-        music.play().catch(e => console.log("الموسيقى تتطلب التفاعل"));
-      }
+
+      envelopeBg.classList.add('open-anim');
+
+      setTimeout(() => {
+        envelopeScene.style.display = 'none';
+        invitationContent.classList.remove('hidden');
+        musicBtn.classList.remove('hidden');
+        floatingRose.classList.remove('hidden');
+
+        if (music && music.src) {
+          music.play().catch(e => console.log("الموسيقى تتطلب تفاعل"));
+        }
+      }, 550);
     });
 
     // التحكم بالصوت
@@ -514,15 +476,14 @@
       }
     });
 
-    // تأثير حركة الوردة مع النزول والطلوع (Scroll)
+    // حركة الوردة مع السكرول
     window.addEventListener('scroll', () => {
       const rose = document.getElementById('floatingRose');
       const scrollPos = window.scrollY;
-      // تدوير الوردة وتحريكها للأعلى وللأسفل بمرونة أثناء السكرول
       rose.style.transform = `translateY(${-scrollPos * 0.15}px) rotate(${scrollPos * 0.2}deg)`;
     });
 
-    // العداد التنازلي حتى 21/10/2026
+    // العداد التنازلي
     const targetDate = new Date("October 21, 2026 16:00:00").getTime();
 
     setInterval(() => {
