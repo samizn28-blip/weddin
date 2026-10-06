@@ -6,7 +6,7 @@
   <title>دعوة زفاف - أريج ومحمد</title>
   
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
-  <!-- مكتبة تساقط الورد والقلوب مع إضافة defer لسرعة الفتح على الآيفون -->
+  <!-- تسريع الفتح للآيفون -->
   <script defer src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   
   <style>
@@ -35,7 +35,7 @@
       overflow: hidden;
     }
 
-    /* أيقونة العريس والعروس عند التمرير */
+    /* أيقونة العريس والعروس العائمة عند التمرير */
     .floating-couple {
       position: fixed;
       right: 20px;
@@ -47,7 +47,7 @@
       filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
     }
 
-    /* ================= المشهد الأول: الظرف ================= */
+    /* ================= المشهد الأول: الظرف والكرت ================= */
     .envelope-scene {
       height: 100vh;
       background: radial-gradient(circle, #2c241d 0%, #12100e 100%);
@@ -115,7 +115,7 @@
       50% { transform: translateY(-8px); }
     }
 
-    /* ================= المشهد الثاني: صفحة الدعوة ================= */
+    /* ================= المشهد الثاني: صفحة الدعوة والبطاقات ================= */
     .invitation-content {
       background: rgba(255, 253, 250, 0.92);
       min-height: 100vh;
@@ -165,6 +165,7 @@
       color: #4a403a;
     }
 
+    /* كرت الآية القرأنية والصور الجمالية */
     .quran-box-custom {
       background: linear-gradient(135deg, #f0e4d2, #dcc4a3);
       border: 1px solid #cbb28d;
@@ -358,11 +359,12 @@
 </head>
 <body>
 
+  <!-- الأيقونة العائمة للعروسين -->
   <div id="floatingCouple" class="floating-couple hidden">👩‍❤️‍👨</div>
 
   <div class="invitation-container">
 
-    <!-- المشهد الأول: الظرف -->
+    <!-- المشهد الأول: الظرف السحري -->
     <section class="envelope-scene" id="envelopeScene">
       <div class="envelope-card" id="envelopeCard">
         <div class="envelope-seal">💌</div>
@@ -372,7 +374,7 @@
       <div class="tap-hint">اضغط على الظرف لفتحه ✨</div>
     </section>
 
-    <!-- المشهد الثاني: صفحة الدعوة كاملة -->
+    <!-- المشهد الثاني: كرت الدعوة والمحتوى الكامل -->
     <main class="invitation-content hidden" id="invitationContent">
       
       <header class="hero-header">
@@ -384,6 +386,7 @@
         </a>
       </header>
 
+      <!-- كرت الدعوة الرئيسي -->
       <section class="card-section text-center">
         <div class="bismillah">بسم الله الرحمن الرحيم</div>
         <h2 class="couple-arabic">الآنسة أريج والسيد محمد</h2>
@@ -391,6 +394,7 @@
           يتشرفان بدعوتكم لحضور حفل زفافهما وتتويج قصتهما بالرباط المقدس
         </p>
         
+        <!-- كرت الآية الكريمة والرموز التعبيرية -->
         <div class="quran-box-custom">
           <div class="icon">📖 💍</div>
           <p>" وَمِنْ آيَاتِهِ أَنْ خَلَقَ لَكُم مِّنْ أَنفُسِكُمْ أَزْوَاجًا لِّتَسْكُنُوا إِلَيْهَا "</p>
@@ -448,7 +452,7 @@
         </div>
       </section>
 
-      <!-- تأكيد الحضور (مربوط بـ Formspree والإشعار الفوري) -->
+      <!-- تأكيد الحضور والإشعارات -->
       <section class="card-section text-center">
         <h3 class="section-title">تأكيد الحضور</h3>
         
@@ -483,7 +487,7 @@
   </div>
 
   <script>
-    // بناء رسالة الشكر وتثبيتها
+    // إظهار رسالة الشكر المخصصة
     function renderThankYou(name, isAttending) {
       const container = document.getElementById('rsvpContainer');
       const text = isAttending 
@@ -498,7 +502,7 @@
       `;
     }
 
-    // التحقق فور فتح الدعوة: هل أجاب هذا الهاتف سابقاً؟
+    // التحقق فور الفتح إذا كان الضيف قد أجاب سابقاً
     function checkPreviousResponse() {
       const savedRSVP = localStorage.getItem('user_has_responded');
       if (savedRSVP) {
@@ -521,7 +525,7 @@
       }
     }
 
-    // حركة فتح الظرف
+    // تفاعل الظرف عند الضغط عليه
     document.getElementById('envelopeCard').addEventListener('click', function() {
       const card = document.getElementById('envelopeCard');
       card.classList.add('open-anim');
@@ -532,11 +536,11 @@
         document.getElementById('floatingCouple').classList.remove('hidden');
 
         triggerConfetti();
-        checkPreviousResponse(); // فحص الاستجابة السابقة فور فتح الظرف
+        checkPreviousResponse();
       }, 550);
     });
 
-    // حركة العريس والعروس عند السكرول
+    // تحريك الأيقونة عند السكرول
     window.addEventListener('scroll', () => {
       const couple = document.getElementById('floatingCouple');
       const scrollPos = window.scrollY;
@@ -562,7 +566,7 @@
       }
     }, 1000);
 
-    // معالجة النموذج وتوصيله لـ Formspree بدون إعادة تحميل
+    // ربط إرسال النموذج بـ Formspree وحفظ عدم التكرار
     const form = document.getElementById('customRsvpForm');
     form.addEventListener('submit', function(e) {
       e.preventDefault();
@@ -577,7 +581,6 @@
 
       const data = new FormData(form);
 
-      // إرسال البيانات عبر AJAX إلى Formspree
       fetch(form.action, {
         method: form.method,
         body: data,
@@ -586,9 +589,7 @@
         }
       }).then(response => {
         if (response.ok) {
-          // 1. حفظ عدم التكرار على هاتف الضيف
           localStorage.setItem('user_has_responded', JSON.stringify({ name: name, isAttending: isAttending }));
-          // 2. إظهار رسالة الشكر فوراً
           renderThankYou(name, isAttending);
         } else {
           alert('حدث خطأ أثناء الإرسال، يرجى المحاولة مرة أخرى.');
