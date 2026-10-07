@@ -35,7 +35,7 @@
       overflow: hidden;
     }
 
-    /* أيقونة العريس والعروس عند التمرير */
+    /* أيقونة الخاتم الذهبي عند التمرير */
     .floating-couple {
       position: fixed;
       right: 20px;
@@ -338,7 +338,8 @@
 </head>
 <body>
 
-  <div id="floatingCouple" class="floating-couple hidden">👩‍❤️‍👨</div>
+  <!-- الخاتم الذهبي المتحرك -->
+  <div id="floatingCouple" class="floating-couple hidden">💍</div>
 
   <div class="invitation-container">
 
@@ -419,163 +420,4 @@
       <section class="card-section text-center">
         <h3 class="section-title">موقع الحفل</h3>
         <div>
-          <p style="font-size: 22px; font-weight: bold; margin: 5px 0;">صالة الجلاء الملكية - المزة</p>
-          <a href="https://maps.google.com/?q=Al+Jalaa+Damascus" target="_blank" class="map-btn">
-            📍 فتح الموقع على خرائط جوجل
-          </a>
-        </div>
-      </section>
-
-      <!-- تأكيد الحضور (مربوط بـ Formspree) -->
-      <section class="card-section text-center">
-        <h3 class="section-title">تأكيد الحضور</h3>
-        
-        <div id="rsvpContainer">
-          <form id="customRsvpForm" class="rsvp-form" action="https://formspree.io/f/xgaowyqv" method="POST">
-            <div class="input-group">
-              <label>الاسم الكامل:</label>
-              <input type="text" name="name" id="guestName" required placeholder="يرجى كتابة الاسم الكريم">
-            </div>
-
-            <div class="input-group">
-              <label>هل ستتمكن من الحضور؟</label>
-              <div class="radio-options">
-                <label class="radio-btn">
-                  <input type="radio" name="attendance" value="يشرفني الحضور ببالغ السرور" checked>
-                  <span>يشرفني الحضور ببالغ السرور</span>
-                </label>
-                <label class="radio-btn">
-                  <input type="radio" name="attendance" value="أعتذر عن الحضور لظروف طارئة">
-                  <span>أعتذر عن الحضور لظروف طارئة</span>
-                </label>
-              </div>
-            </div>
-
-            <button type="submit" id="submitBtn" class="submit-btn">إرسال تأكيد الحضور</button>
-          </form>
-        </div>
-      </section>
-
-    </main>
-
-  </div>
-
-  <script>
-    // بناء رسالة الشكر وتثبيتها
-    function renderThankYou(name, isAttending) {
-      const container = document.getElementById('rsvpContainer');
-      const text = isAttending 
-        ? 'أسعدتنا كثيراً بتأكيد حضورك، وننتظر بشوق مشاركتك فرحتنا في هذا اليوم المميز!' 
-        : 'نشكرك على إبلاغنا، ونتمنى أن تجمعنا المناسبات السعيدة القادمة بإذن الله.';
-      
-      container.innerHTML = `
-        <div class="thank-you-box">
-          <h4>شكراً لك يا ${name}! ❤️</h4>
-          <p>${text}</p>
-        </div>
-      `;
-    }
-
-    // التحقق فور فتح الدعوة: هل أجاب هذا الهاتف سابقاً؟
-    function checkPreviousResponse() {
-      const savedRSVP = localStorage.getItem('user_has_responded');
-      if (savedRSVP) {
-        const data = JSON.parse(savedRSVP);
-        renderThankYou(data.name, data.isAttending);
-      }
-    }
-
-    // تأثير تساقط الورد والقلوب
-    function triggerConfetti() {
-      if (typeof confetti === 'function') {
-        var duration = 3 * 1000;
-        var animationEnd = Date.now() + duration;
-
-        (function frame() {
-          confetti({ particleCount: 3, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#d4af37', '#f3e5ab', '#e0a96d', '#ffffff'] });
-          confetti({ particleCount: 3, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#d4af37', '#f3e5ab', '#e0a96d', '#ffffff'] });
-          if (Date.now() < animationEnd) requestAnimationFrame(frame);
-        }());
-      }
-    }
-
-    // حركة فتح بطاقة الصورة
-    document.getElementById('envelopeCard').addEventListener('click', function() {
-      const card = document.getElementById('envelopeCard');
-      card.classList.add('open-anim');
-
-      setTimeout(() => {
-        document.getElementById('envelopeScene').style.display = 'none';
-        document.getElementById('invitationContent').classList.remove('hidden');
-        document.getElementById('floatingCouple').classList.remove('hidden');
-
-        triggerConfetti();
-        checkPreviousResponse();
-      }, 550);
-    });
-
-    // حركة العريس والعروس عند السكرول
-    window.addEventListener('scroll', () => {
-      const couple = document.getElementById('floatingCouple');
-      const scrollPos = window.scrollY;
-      couple.style.transform = `translateY(${-scrollPos * 0.1}px) rotate(${Math.sin(scrollPos * 0.01) * 10}deg)`;
-    });
-
-    // العداد التنازلي المحدث لوقت الحفل (7:30 مساءً)
-    const targetDate = new Date("October 21, 2026 19:30:00").getTime();
-    setInterval(() => {
-      const now = new Date().getTime();
-      const difference = targetDate - now;
-
-      if (difference > 0) {
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-        document.getElementById("days").innerText = days < 10 ? '0' + days : days;
-        document.getElementById("hours").innerText = hours < 10 ? '0' + hours : hours;
-        document.getElementById("minutes").innerText = minutes < 10 ? '0' + minutes : minutes;
-        document.getElementById("seconds").innerText = seconds < 10 ? '0' + seconds : seconds;
-      }
-    }, 1000);
-
-    // معالجة النموذج وتوصيله لـ Formspree عبر AJAX
-    const form = document.getElementById('customRsvpForm');
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      const btn = document.getElementById('submitBtn');
-      btn.innerText = 'جاري الإرسال...';
-      btn.disabled = true;
-
-      const name = document.getElementById('guestName').value;
-      const statusInput = document.querySelector('input[name="attendance"]:checked').value;
-      const isAttending = statusInput.includes("يشرفني");
-
-      const data = new FormData(form);
-
-      fetch(form.action, {
-        method: form.method,
-        body: data,
-        headers: {
-          'Accept': 'application/json'
-        }
-      }).then(response => {
-        if (response.ok) {
-          localStorage.setItem('user_has_responded', JSON.stringify({ name: name, isAttending: isAttending }));
-          renderThankYou(name, isAttending);
-        } else {
-          alert('حدث خطأ أثناء الإرسال، يرجى المحاولة مرة أخرى.');
-          btn.innerText = 'إرسال تأكيد الحضور';
-          btn.disabled = false;
-        }
-      }).catch(error => {
-        alert('يرجى التأكد من الاتصال بالإنترنت والمحاولة مجدداً.');
-        btn.innerText = 'إرسال تأكيد الحضور';
-        btn.disabled = false;
-      });
-    });
-  </script>
-</body>
-</html>
+          <p style="font
