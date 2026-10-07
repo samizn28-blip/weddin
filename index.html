@@ -35,16 +35,55 @@
       overflow: hidden;
     }
 
-    /* أيقونة العريس والعروس عند التمرير */
-    .floating-couple {
+    /* ================= حركة العريس والعروس المتفاعلة ================= */
+    .couple-track-container {
       position: fixed;
-      right: 20px;
-      bottom: 80px;
-      font-size: 38px;
-      z-index: 90;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      max-width: 430px;
+      height: 100vh;
       pointer-events: none;
-      transition: transform 0.15s ease-out;
-      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
+      z-index: 99;
+      overflow: hidden;
+    }
+
+    .groom-avatar, .bride-avatar {
+      position: absolute;
+      width: 55px;
+      height: 55px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+      transition: transform 0.1s linear;
+    }
+
+    /* أشكال واقعية وراقية للعريس والعروس (Vector/SVG) */
+    .groom-avatar {
+      top: 20px;
+      right: 20px;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><path fill='%237a5c28' d='M32 4a12 12 0 1 0 12 12A12 12 0 0 0 32 4zm0 28c-12 0-24 6-24 18v6h48v-6c0-12-12-18-24-18z'/><path fill='%23d4af37' d='M28 36l4 8 4-8-4 2z'/></svg>");
+    }
+
+    .bride-avatar {
+      bottom: 20px;
+      left: 20px;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><path fill='%23cbb28d' d='M32 2a10 10 0 1 0 10 10A10 10 0 0 0 32 2zm0 22c-10 0-20 6-20 16v18c0 2 2 4 4 4h32c2 0 4-2 4-4V40c0-10-10-16-20-16z'/><path fill='%23ffffff' opacity='0.6' d='M22 20c-4 8-6 16-6 24h32c0-8-2-16-6-24z'/></svg>");
+    }
+
+    .meeting-hearts {
+      position: absolute;
+      bottom: 75px;
+      left: 50%;
+      transform: translateX(-50%) scale(0);
+      font-size: 26px;
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .meeting-hearts.active {
+      transform: translateX(-50%) scale(1.2);
     }
 
     /* ================= المشهد الأول: بطاقة الصورة ================= */
@@ -338,7 +377,12 @@
 </head>
 <body>
 
-  <div id="floatingCouple" class="floating-couple hidden">👩‍❤️‍👨</div>
+  <!-- مسار تحرك العريس والعروس العائم -->
+  <div id="coupleTrack" class="couple-track-container hidden">
+    <div id="groomAvatar" class="groom-avatar"></div>
+    <div id="brideAvatar" class="bride-avatar"></div>
+    <div id="meetingHearts" class="meeting-hearts">💖✨💖</div>
+  </div>
 
   <div class="invitation-container">
 
@@ -507,18 +551,41 @@
       setTimeout(() => {
         document.getElementById('envelopeScene').style.display = 'none';
         document.getElementById('invitationContent').classList.remove('hidden');
-        document.getElementById('floatingCouple').classList.remove('hidden');
+        document.getElementById('coupleTrack').classList.remove('hidden');
 
         triggerConfetti();
         checkPreviousResponse();
       }, 550);
     });
 
-    // حركة العريس والعروس عند السكرول
+    // البرمجة الرياضية لالتقاء العريس والعروس بالسكرول
     window.addEventListener('scroll', () => {
-      const couple = document.getElementById('floatingCouple');
-      const scrollPos = window.scrollY;
-      couple.style.transform = `translateY(${-scrollPos * 0.1}px) rotate(${Math.sin(scrollPos * 0.01) * 10}deg)`;
+      const groom = document.getElementById('groomAvatar');
+      const bride = document.getElementById('brideAvatar');
+      const hearts = document.getElementById('meetingHearts');
+
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      if (maxScroll <= 0) return;
+
+      const scrollFraction = Math.min(1, Math.max(0, window.scrollY / maxScroll));
+
+      // حركة العريس من الأعلى يميناً إلى الأسفل منتصفاً
+      const groomX = -scrollFraction * 135; // تحرك لليسار
+      const groomY = scrollFraction * (window.innerHeight - 100); // تحرك لأسفل
+
+      // حركة العروس من الأسفل يساراً إلى الأسفل منتصفاً
+      const brideX = scrollFraction * 135; // تحرك لليمن
+      const brideY = 0; // تبقى بالأسفل
+
+      groom.style.transform = `translate(${groomX}px, ${groomY}px)`;
+      bride.style.transform = `translate(${brideX}px, ${brideY}px)`;
+
+      // إذا وصل الزائر لآخر الصفحة تظهر القلوب وتلتقي الشخصيات
+      if (scrollFraction > 0.88) {
+        hearts.classList.add('active');
+      } else {
+        hearts.classList.remove('active');
+      }
     });
 
     // العداد التنازلي المحدث لوقت الحفل (7:30 مساءً)
@@ -568,14 +635,4 @@
         } else {
           alert('حدث خطأ أثناء الإرسال، يرجى المحاولة مرة أخرى.');
           btn.innerText = 'إرسال تأكيد الحضور';
-          btn.disabled = false;
-        }
-      }).catch(error => {
-        alert('يرجى التأكد من الاتصال بالإنترنت والمحاولة مجدداً.');
-        btn.innerText = 'إرسال تأكيد الحضور';
-        btn.disabled = false;
-      });
-    });
-  </script>
-</body>
-</html>
+          btn.disabled
