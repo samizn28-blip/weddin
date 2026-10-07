@@ -34,7 +34,7 @@
       overflow: hidden;
     }
 
-    /* تثبيت أيقونات السكرول على الجانب الخارجي تماماً لعدم تغطية النص */
+    /* تثبيت أيقونات العريس والعروس للتحرك بالسكرول على الأطراف الخارجية فقط */
     .couple-track-container {
       position: fixed;
       top: 0;
@@ -50,12 +50,12 @@
 
     .groom-avatar, .bride-avatar {
       position: absolute;
-      width: 55px;
-      height: 55px;
+      width: 50px;
+      height: 50px;
       border-radius: 50%;
       overflow: hidden;
       border: 2px solid #d4af37;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
       background-color: #ffffff;
       transition: transform 0.1s linear;
       pointer-events: none;
@@ -68,15 +68,15 @@
       display: block;
     }
 
-    /* مواضع جانبيّة بعيدة عن النص */
+    /* العريس على اليمين والعروس على اليسار بعيداً عن الكلام */
     .groom-avatar {
       top: 20px;
-      right: 5px;
+      right: 8px;
     }
 
     .bride-avatar {
       bottom: 20px;
-      left: 5px;
+      left: 8px;
     }
 
     .meeting-hearts {
@@ -199,7 +199,7 @@
       color: #4a403a;
     }
 
-    /* تصحيح المربع الذهبي والصورة داخلها */
+    /* المربع الذهبي */
     .quran-box-custom {
       background: linear-gradient(135deg, #f3ebd9, #e5d2b7);
       border: 1px solid #cbb28d;
@@ -213,17 +213,16 @@
       justify-content: center;
     }
 
-    /* إصلاح حجم وشكل صورة القرآن والخواتم لتكون متناسقة وأنيقة */
+    /* صورة القرآن والخواتم بداخل المربع الذهبي */
     .quran-box-custom img {
-      max-width: 180px;
-      max-height: 130px;
+      max-width: 220px;
+      max-height: 150px;
       width: auto;
       height: auto;
       object-fit: contain;
       margin-bottom: 12px;
       border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      border: 1px solid rgba(212, 175, 55, 0.3);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
 
     .quran-box-custom p {
@@ -399,20 +398,22 @@
 </head>
 <body>
 
-  <!-- العريس والعروس المفتوحان للحركة بعيداً عن المنتصف -->
+  <!-- أيقونات حركة السكرول (العريس والعروس منفصلان) -->
   <div id="coupleTrack" class="couple-track-container hidden">
+    <!-- صورة العريس -->
     <div id="groomAvatar" class="groom-avatar">
-      <img src="1000040706.jpg" alt="العريس">
+      <img src="groom.jpg" alt="العريس">
     </div>
+    <!-- صورة العروس -->
     <div id="brideAvatar" class="bride-avatar">
-      <img src="1000040706.jpg" alt="العروس">
+      <img src="bride.jpg" alt="العروس">
     </div>
     <div id="meetingHearts" class="meeting-hearts">💖✨💖</div>
   </div>
 
   <div class="invitation-container">
 
-    <!-- المشهد الأول: صورة بطاقة الدعوة -->
+    <!-- المشهد الأول: بطاقة الغلاف -->
     <section class="image-card-scene" id="envelopeScene">
       <div class="image-card-wrapper">
         <img src="start.png" alt="بطاقة دعوة أريج ومحمد">
@@ -440,8 +441,8 @@
         </p>
         
         <div class="quran-box-custom">
-          <!-- تم ضبط عرض الصورة لتظهر بحجم متناسق وجذاب -->
-          <img src="1000040706.jpg" alt="القرآن والخواتم">
+          <!-- هنا صورة القرآن والخواتم الحقيقية -->
+          <img src="quran.jpg" alt="القرآن والخواتم">
           <p>" وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً "</p>
         </div>
 
@@ -582,7 +583,7 @@
       }, 500);
     });
 
-    // حركة العريس والعروس
+    // حركة العريس والعروس بالسكرول
     window.addEventListener('scroll', () => {
       const groom = document.getElementById('groomAvatar');
       const bride = document.getElementById('brideAvatar');
