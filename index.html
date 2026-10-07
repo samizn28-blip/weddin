@@ -35,7 +35,7 @@
       overflow: hidden;
     }
 
-    /* أيقونة الخاتم عند التمرير */
+    /* أيقونة العريس والعروس عند التمرير */
     .floating-couple {
       position: fixed;
       right: 20px;
@@ -338,8 +338,7 @@
 </head>
 <body>
 
-  <!-- الخاتم الذهبي المتحرك عند السكرول -->
-  <div id="floatingCouple" class="floating-couple hidden">💍</div>
+  <div id="floatingCouple" class="floating-couple hidden">👩‍❤️‍👨</div>
 
   <div class="invitation-container">
 
@@ -515,20 +514,11 @@
       }, 550);
     });
 
-    // حركة دوران ونزول الخاتم الذهبي عند السكرول
+    // حركة العريس والعروس عند السكرول
     window.addEventListener('scroll', () => {
-      const ring = document.getElementById('floatingCouple');
-      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      
-      if (maxScroll <= 0) return;
-
-      const scrollFraction = Math.min(1, Math.max(0, window.scrollY / maxScroll));
-
-      // حركة دوران متدرجة مع التمرير لأسفل
-      const rotation = scrollFraction * 720; // يدور الخاتم دورة كاملة مع السكرول
-      const translateY = -scrollFraction * 20; // تحرك رأسي ناعم
-
-      ring.style.transform = `translateY(${translateY}px) rotate(${rotation}deg)`;
+      const couple = document.getElementById('floatingCouple');
+      const scrollPos = window.scrollY;
+      couple.style.transform = `translateY(${-scrollPos * 0.1}px) rotate(${Math.sin(scrollPos * 0.01) * 10}deg)`;
     });
 
     // العداد التنازلي المحدث لوقت الحفل (7:30 مساءً)
