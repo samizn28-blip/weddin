@@ -6,7 +6,7 @@
   <title>دعوة زفاف - أريج ومحمد</title>
   
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
-  <!-- مكتبة تساقط الورد والقلوب مع إضافة defer لسرعة الفتح على الآيفون -->
+  <!-- مكتبة تساقط الورد والقلوب -->
   <script defer src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   
   <style>
@@ -456,18 +456,19 @@
           <form id="customRsvpForm" class="rsvp-form" action="https://formspree.io/f/xgaowyqv" method="POST">
             <div class="input-group">
               <label>الاسم الكامل:</label>
-              <input type="text" name="الاسم" id="guestName" required placeholder="يرجى كتابة الاسم الكريم">
+              <!-- إعطاء الحقل name="name" لتتعرف عليه Formspree بشكل قياسي وتظهره في عنوان الرسالة -->
+              <input type="text" name="name" id="guestName" required placeholder="يرجى كتابة الاسم الكريم">
             </div>
 
             <div class="input-group">
               <label>هل ستتمكن من الحضور؟</label>
               <div class="radio-options">
                 <label class="radio-btn">
-                  <input type="radio" name="حالة الحضور" value="يشرفني الحضور ببالغ السرور" checked>
+                  <input type="radio" name="attendance" value="يشرفني الحضور ببالغ السرور" checked>
                   <span>يشرفني الحضور ببالغ السرور</span>
                 </label>
                 <label class="radio-btn">
-                  <input type="radio" name="حالة الحضور" value="أعتذر عن الحضور لظروف طارئة">
+                  <input type="radio" name="attendance" value="أعتذر عن الحضور لظروف طارئة">
                   <span>أعتذر عن الحضور لظروف طارئة</span>
                 </label>
               </div>
@@ -572,7 +573,7 @@
       btn.disabled = true;
 
       const name = document.getElementById('guestName').value;
-      const statusInput = document.querySelector('input[name="حالة الحضور"]:checked').value;
+      const statusInput = document.querySelector('input[name="attendance"]:checked').value;
       const isAttending = statusInput.includes("يشرفني");
 
       const data = new FormData(form);
