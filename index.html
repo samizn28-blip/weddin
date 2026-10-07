@@ -4,51 +4,166 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>دعوة زفاف - محمد وأريج</title>
-  
-  <!-- الخطوط العربية -->
+
+  <!-- الخطوط العربية الفاخرة -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Reem+Kufi:wght@500;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
-  
-  <!-- مكتبة الزينة الاحتفالية المتطايرة -->
+
+  <!-- مكتبة القصاصات الاحتفالية (Confetti) -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
   <style>
+    /* ==========================================
+       1. المتغيرات والتنسيقات الأساسية
+       ========================================== */
+    :root {
+      --bg-color: #fcf9f2;
+      --card-bg: #ffffff;
+      --primary-gold: #d4af37;
+      --dark-gold: #8c6a2d;
+      --light-gold: #f4eae0;
+      --text-color: #333333;
+      --border-color: #cbb28d;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    body {
-      font-family: 'Tajawal', sans-serif;
-      background-color: #f7f3eb;
-      color: #333333;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
+    html, body {
+      width: 100%;
       min-height: 100vh;
+      background-color: #f7f3eb;
+      font-family: 'Tajawal', sans-serif;
+      color: var(--text-color);
       overflow-x: hidden;
     }
 
-    /* الحاوية الرئيسية */
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    /* ==========================================
+       2. شاشة المقدمة والترحيب (Splash Overlay)
+       ========================================== */
+    .intro-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: linear-gradient(135deg, #1a1a1a 0%, #2c251e 100%);
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px;
+      transition: opacity 0.8s ease, visibility 0.8s ease;
+    }
+
+    .intro-overlay.fade-out {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .intro-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      border-radius: 20px;
+      padding: 40px 25px;
+      backdrop-filter: blur(10px);
+      max-width: 360px;
+      width: 90%;
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+      animation: pulseGold 3s infinite alternate;
+    }
+
+    @keyframes pulseGold {
+      0% { box-shadow: 0 0 15px rgba(212, 175, 55, 0.2); }
+      100% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.6); }
+    }
+
+    .intro-icon {
+      font-size: 50px;
+      margin-bottom: 15px;
+      display: inline-block;
+      animation: floatIcon 2.5s ease-in-out infinite;
+    }
+
+    @keyframes floatIcon {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .intro-title {
+      font-family: 'Aref Ruqaa', serif;
+      font-size: 32px;
+      color: var(--primary-gold);
+      margin-bottom: 10px;
+    }
+
+    .intro-subtitle {
+      font-size: 16px;
+      color: #e0e0e0;
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+
+    .open-btn {
+      background: linear-gradient(135deg, #d4af37, #b89235);
+      color: #ffffff;
+      border: none;
+      padding: 14px 35px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 30px;
+      cursor: pointer;
+      font-family: 'Tajawal', sans-serif;
+      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .open-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+    }
+
+    /* ==========================================
+       3. الحاوية الرئيسية لدعوة الزفاف
+       ========================================== */
     .invitation-container {
       width: 100%;
       max-width: 430px;
-      background-color: #fcf9f2;
+      background-color: var(--bg-color);
       min-height: 100vh;
-      padding: 30px 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      padding: 30px 20px 40px 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.08);
       position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
     }
 
-    /* فاصل أرابيسك دمشقي */
+    .invitation-container.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* الفواصل الدمشقية */
     .damascus-divider {
       text-align: center;
-      color: #d4af37;
+      color: var(--primary-gold);
       font-size: 16px;
       margin: 15px 0;
       letter-spacing: 2px;
@@ -57,7 +172,7 @@
     .header-title {
       font-family: 'Aref Ruqaa', serif;
       font-size: 30px;
-      color: #8c6a2d;
+      color: var(--dark-gold);
       text-align: center;
       margin-top: 10px;
     }
@@ -65,16 +180,19 @@
     .couple-names {
       font-family: 'Aref Ruqaa', serif;
       font-size: 34px;
-      color: #8c6a2d;
+      color: var(--dark-gold);
       text-align: center;
       margin: 15px 0;
       font-weight: bold;
+      line-height: 1.3;
     }
 
-    /* المربع الذهبي مع خلفية القرآن المدمجة */
+    /* ==========================================
+       4. المربع الذهبي (الآية القرأنية + الخلفية)
+       ========================================== */
     .quran-box-custom {
       width: 100%;
-      border: 1px solid #cbb28d;
+      border: 1px solid var(--border-color);
       border-radius: 16px;
       padding: 35px 20px;
       margin: 20px 0;
@@ -86,7 +204,7 @@
       position: relative;
       overflow: hidden;
 
-      background-image: linear-gradient(rgba(252, 249, 242, 0.85), rgba(244, 234, 224, 0.85)), url('quran-rings.png');
+      background-image: linear-gradient(rgba(252, 249, 242, 0.88), rgba(244, 234, 224, 0.88)), url('quran-rings.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -101,10 +219,12 @@
       z-index: 2;
     }
 
-    /* تفاصيل الحفل */
+    /* ==========================================
+       5. بطاقات التفاصيل والأزرار
+       ========================================== */
     .details-card {
       width: 100%;
-      background: #ffffff;
+      background: var(--card-bg);
       border-radius: 16px;
       padding: 22px 18px;
       margin: 15px 0;
@@ -115,7 +235,7 @@
 
     .details-card h3 {
       font-family: 'Reem Kufi', sans-serif;
-      color: #8c6a2d;
+      color: var(--dark-gold);
       font-size: 20px;
       margin-bottom: 14px;
     }
@@ -127,7 +247,6 @@
       line-height: 1.6;
     }
 
-    /* الأزرار */
     .btn-group {
       width: 100%;
       display: flex;
@@ -150,7 +269,7 @@
       justify-content: center;
       gap: 8px;
       text-decoration: none;
-      transition: transform 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .btn:active {
@@ -166,30 +285,39 @@
     .btn-outline {
       background: transparent;
       border: 2px solid #c59b27;
-      color: #8c6a2d;
+      color: var(--dark-gold);
     }
 
-    /* الخاتم المتحرك والدوار مع السكرول */
+    /* ==========================================
+       6. عناصر السكرول (الخاتم الذهبي المتحرك)
+       ========================================== */
     .scrolling-ring {
       position: fixed;
-      top: 20px;
+      top: 25px;
       right: 15px;
       width: 48px;
       height: 48px;
       border-radius: 50%;
       background: rgba(255, 255, 255, 0.95);
-      border: 2px solid #d4af37;
+      border: 2px solid var(--primary-gold);
       box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 24px;
-      z-index: 999;
+      z-index: 998;
       pointer-events: none;
       transition: transform 0.1s linear;
+      opacity: 0;
     }
 
-    /* نموذج تأكيد الحضور */
+    .scrolling-ring.active {
+      opacity: 1;
+    }
+
+    /* ==========================================
+       7. نموذج تأكيد الحضور (RSVP Form)
+       ========================================== */
     .rsvp-form {
       display: flex;
       flex-direction: column;
@@ -205,25 +333,167 @@
       font-family: 'Tajawal', sans-serif;
       font-size: 14px;
       background-color: #faf8f5;
+      color: #333;
+      outline: none;
+    }
+
+    .rsvp-form input:focus, .rsvp-form select:focus {
+      border-color: var(--primary-gold);
+      box-shadow: 0 0 5px rgba(212, 175, 55, 0.3);
+    }
+
+    /* زر تشغيل الصوت التحكمي */
+    .audio-control {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(212, 175, 55, 0.9);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      cursor: pointer;
+      z-index: 997;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
     }
   </style>
 </head>
 <body>
 
-  <!-- الخاتم الذي يدور وينزل مع السكرول -->
+  <!-- ==========================================
+       1. شاشة المقدمة والترحيب
+       ========================================== -->
+  <div id="introOverlay" class="intro-overlay">
+    <div class="intro-card">
+      <div class="intro-icon">✉️</div>
+      <h2 class="intro-title">دعوة زفاف</h2>
+      <p class="intro-subtitle">يتشرف آل العريس بدمشق بدعوتكم لحضور حفل الزفاف المبارك</p>
+      <button id="openInvitationBtn" class="open-btn">افتح الدعوة 💍</button>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       2. الخاتم الذهبي المشرق للسكرول
+       ========================================== -->
   <div id="scrollRing" class="scrolling-ring">💍</div>
 
-  <div class="invitation-container">
+  <!-- زر التحكم بالصوت -->
+  <div id="audioToggle" class="audio-control" style="display: none;">🎵</div>
+
+  <!-- ==========================================
+       3. محتوى البطاقة الرئيسي
+       ========================================== -->
+  <div id="mainContainer" class="invitation-container">
 
     <div class="damascus-divider">❖ ─── ✤ ─── ❖</div>
 
     <h1 class="header-title">دعوة زفاف</h1>
 
-    <div class="couple-names">محمد & أريج</div>
+    <div class="couple-names">الآنسة أريج & المحامي محمد</div>
 
-    <!-- مربع القرآن الكريم مع الخلفية المدمجة -->
+    <!-- المربع الذهبي مع خلفية القرآن المدمجة -->
     <div class="quran-box-custom">
       <p>" وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً "</p>
     </div>
 
-    <div class="damascus-divider">❀ ──── ✤ ────
+    <div class="damascus-divider">❀ ──── ✤ ──── ❀</div>
+
+    <!-- تفاصيل الحفل -->
+    <div class="details-card">
+      <h3>تفاصيل الحفل المبارك</h3>
+      <p class="details-item">📅 <strong>التاريخ:</strong> الأربعاء، 21 تشرين الأول (10) 2026</p>
+      <p class="details-item">📍 <strong>المكان:</strong> صالة الجلاء الملكية - دمشق</p>
+      <p class="details-item">⏰ <strong>الوقت:</strong> الساعة 7:30 مساءً</p>
+    </div>
+
+    <!-- أزرار التفاعل -->
+    <div class="btn-group">
+      <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=حفل+زفاف+محمد+وأريج&dates=20261021T163000Z/20261021T200000Z&location=صالة+الجلاء،+دمشق" target="_blank" class="btn btn-gold">
+        📅 إضافة إلى تقويم Google
+      </a>
+      <a href="https://maps.google.com" target="_blank" class="btn btn-outline">
+        📍 موقع الصالة على الخريطة
+      </a>
+    </div>
+
+    <!-- نموذج RSVP -->
+    <div class="details-card" style="margin-top: 25px;">
+      <h3>تأكيد الحضور (RSVP)</h3>
+      <form class="rsvp-form" action="https://formspree.io/f/xgaowyqv" method="POST">
+        <input type="text" name="name" placeholder="الاسم الكريم" required>
+        <select name="attendance" required>
+          <option value="" disabled selected>هل ستشرفنا بالحضور؟</option>
+          <option value="يشرفني الحضور">يشرفني الحضور</option>
+          <option value="أعتذر عن الحضور">أعتذر عن الحضور</option>
+        </select>
+        <input type="number" name="guests" placeholder="عدد المرافقين" min="0" max="5" value="0">
+        <button type="submit" class="btn btn-gold">تأكيد الإرسال</button>
+      </form>
+    </div>
+
+    <div class="damascus-divider" style="margin-top: 30px;">❖ بحضوركم تكتمل فرحتنا ❖</div>
+
+  </div>
+
+  <!-- ==========================================
+       4. البرمجة والسكريبتات (JavaScript)
+       ========================================== -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const openBtn = document.getElementById('openInvitationBtn');
+      const introOverlay = document.getElementById('introOverlay');
+      const mainContainer = document.getElementById('mainContainer');
+      const scrollRing = document.getElementById('scrollRing');
+      const audioToggle = document.getElementById('audioToggle');
+
+      // 1. عند الضغط على زر فتح الدعوة
+      openBtn.addEventListener('click', () => {
+        // إخفاء شاشة المقدمة
+        introOverlay.classList.add('fade-out');
+        
+        // إظهار البطاقة الرئيسية والخاتم
+        setTimeout(() => {
+          mainContainer.classList.add('visible');
+          scrollRing.classList.add('active');
+          audioToggle.style.display = 'flex';
+
+          // إطلاق الزينة الذهبية المتطايرة (Confetti)
+          if (typeof confetti === 'function') {
+            confetti({
+              particleCount: 80,
+              spread: 80,
+              origin: { y: 0.4 },
+              colors: ['#d4af37', '#ffffff', '#e5c158', '#8c6a2d']
+            });
+          }
+        }, 300);
+      });
+
+      // 2. البرمجة التفاعلية لخاتم السكرول المباشر
+      window.addEventListener('scroll', () => {
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        if (maxScroll <= 0) return;
+
+        const scrollFraction = Math.min(1, Math.max(0, window.scrollY / maxScroll));
+
+        // حساب حركة النزول والدوران للخاتم
+        const translateY = scrollFraction * (window.innerHeight - 90);
+        const rotation = scrollFraction * 720; // يدور 720 درجة مع التمرير الكامل
+
+        scrollRing.style.transform = `translateY(${translateY}px) rotate(${rotation}deg)`;
+      });
+
+      // 3. تبديل وضع الصوت بلمسة خفيفة
+      let isPlaying = true;
+      audioToggle.addEventListener('click', () => {
+        isPlaying = !isPlaying;
+        audioToggle.textContent = isPlaying ? '🎵' : '🔇';
+      });
+    });
+  </script>
+</body>
+</html>
