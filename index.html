@@ -34,7 +34,7 @@
       overflow: hidden;
     }
 
-    /* تثبيت أيقونات العريس والعروس للتحرك بالسكرول على الأطراف الخارجية فقط */
+    /* تثبيت أيقونات العريس والعروس للتحرك بالسكرول على الأطراف الخارجية */
     .couple-track-container {
       position: fixed;
       top: 0;
@@ -68,7 +68,7 @@
       display: block;
     }
 
-    /* العريس على اليمين والعروس على اليسار بعيداً عن الكلام */
+    /* العريس على اليمين والعروس على اليسار */
     .groom-avatar {
       top: 20px;
       right: 8px;
@@ -77,21 +77,6 @@
     .bride-avatar {
       bottom: 20px;
       left: 8px;
-    }
-
-    .meeting-hearts {
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%) scale(0);
-      font-size: 28px;
-      transition: transform 0.3s ease;
-      pointer-events: none;
-      z-index: 100;
-    }
-
-    .meeting-hearts.active {
-      transform: translateX(-50%) scale(1.2);
     }
 
     /* الشاشة الأولى: بطاقة الغلاف */
@@ -213,7 +198,7 @@
       justify-content: center;
     }
 
-    /* صورة القرآن والخواتم بداخل المربع الذهبي */
+    /* صورة القرآن والخواتم */
     .quran-box-custom img {
       max-width: 220px;
       max-height: 150px;
@@ -398,17 +383,14 @@
 </head>
 <body>
 
-  <!-- أيقونات حركة السكرول (العريس والعروس منفصلان) -->
+  <!-- أيقونات العريس والعروس منفصلان على الأطراف -->
   <div id="coupleTrack" class="couple-track-container hidden">
-    <!-- صورة العريس -->
     <div id="groomAvatar" class="groom-avatar">
       <img src="groom.jpg" alt="العريس">
     </div>
-    <!-- صورة العروس -->
     <div id="brideAvatar" class="bride-avatar">
       <img src="bride.jpg" alt="العروس">
     </div>
-    <div id="meetingHearts" class="meeting-hearts">💖✨💖</div>
   </div>
 
   <div class="invitation-container">
@@ -441,8 +423,8 @@
         </p>
         
         <div class="quran-box-custom">
-          <!-- هنا صورة القرآن والخواتم الحقيقية -->
-          <img src="quran.jpg" alt="القرآن والخواتم">
+          <!-- تم استبدال الاسم هنا رسمياً باسم صورة القرآن والخواتم الخاصة بك -->
+          <img src="quran-rings.png" alt="القرآن والخواتم">
           <p>" وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً "</p>
         </div>
 
@@ -583,11 +565,10 @@
       }, 500);
     });
 
-    // حركة العريس والعروس بالسكرول
+    // حركة العريس والعروس بالسكرول بدون قلوب
     window.addEventListener('scroll', () => {
       const groom = document.getElementById('groomAvatar');
       const bride = document.getElementById('brideAvatar');
-      const hearts = document.getElementById('meetingHearts');
 
       const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
       if (maxScroll <= 0) return;
@@ -599,12 +580,6 @@
 
       groom.style.transform = `translateY(${groomY}px)`;
       bride.style.transform = `translateY(${brideY}px)`;
-
-      if (scrollFraction > 0.88) {
-        hearts.classList.add('active');
-      } else {
-        hearts.classList.remove('active');
-      }
     });
 
     // العداد التنازلي
