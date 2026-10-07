@@ -6,8 +6,6 @@
   <title>دعوة زفاف - أريج ومحمد</title>
   
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
-  <!-- مكتبة تساقط الورد والقلوب -->
-  <script defer src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   
   <style>
     * { box-sizing: border-box; }
@@ -159,10 +157,7 @@
       justify-content: center;
       position: relative;
       overflow: hidden;
-      background-image: linear-gradient(rgba(252, 249, 242, 0.9), rgba(244, 234, 224, 0.9)), url('quran-rings.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+      background: linear-gradient(135deg, #f0e4d2, #dcc4a3);
     }
 
     .quran-box-custom .icon {
@@ -287,4 +282,318 @@
 
     .rsvp-form { display: flex; flex-direction: column; gap: 15px; text-align: right; }
 
-    .input-group label { display: block; font-size: 17px;
+    .input-group label { display: block; font-size: 17px; margin-bottom: 5px; color: #444; }
+
+    .input-group input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #d3c4b1;
+      border-radius: 8px;
+      background: #fff;
+      font-size: 16px;
+      font-family: 'Amiri', serif;
+    }
+
+    .radio-options { display: flex; flex-direction: column; gap: 10px; margin-top: 5px; }
+
+    .radio-btn { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 16px; }
+
+    .submit-btn {
+      background: #8c6a2d;
+      color: #fff;
+      border: none;
+      padding: 13px;
+      font-size: 18px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-family: 'Amiri', serif;
+      transition: background 0.3s;
+    }
+
+    .submit-btn:disabled {
+      background: #a89985;
+      cursor: not-allowed;
+    }
+
+    .thank-you-box {
+      background: #f4ece1;
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid #d8c3a5;
+      text-align: center;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .thank-you-box h4 {
+      font-size: 24px;
+      color: #7a5c28;
+      margin: 0 0 8px;
+      font-family: 'Aref Ruqaa', serif;
+    }
+
+    .thank-you-box p {
+      font-size: 17px;
+      color: #444;
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .text-center { text-align: center; }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+
+  <!-- الخاتم الذهبي المتحرك -->
+  <div id="floatingCouple" class="floating-couple hidden">💍</div>
+
+  <div class="invitation-container">
+
+    <!-- المشهد الأول: صورة بطاقة الدعوة -->
+    <section class="image-card-scene" id="envelopeScene">
+      <div class="image-card-wrapper" id="envelopeCard">
+        <!-- ملاحظة: إذا لم تظهر الصورة، تأكد أن اسمها start.png وفي نفس المجلد -->
+        <img src="start.png" alt="بطاقة دعوة أريج ومحمد" onerror="this.src='https://via.placeholder.com/340x500/2c241d/dfc38c?text=اضغط+هنا+لفتح+الدعوة';">
+      </div>
+      <div class="tap-hint">اضغط على الدعوة لفتح التفاصيل ✨</div>
+    </section>
+
+    <!-- المشهد الثاني: صفحة الدعوة التفاعلية -->
+    <main class="invitation-content hidden" id="invitationContent">
+      
+      <header class="hero-header">
+        <h1 class="names-title">أريج & محمد</h1>
+        <p class="hero-date">21 أكتوبر 2026<br>الساعة 7:30 مساءً</p>
+        
+        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%D8%AD%D9%81%D9%84+%D8%B2%D9%81%D8%A7%D9%81+%D8%A3%D8%B1%D9%8A%D8%AC+%D9%88%D9%85%D8%AD%D9%85%D8%AF&dates=20261021T193000/20261021T233000&details=%D9%86%D8%AA%D8%B4%D8%B1%D9%81+%D8%A8%D8%AD%D8%B6%D9%88%D8%B1%D9%83%D9%85+%D8%AD%D9%81%D9%84+%D8%B2%D9%81%D8%A7%D9%81+%D8%A3%D8%B1%D9%8A%D8%AC+%D9%88%D9%85%D8%AD%D9%85%D8%AF+%D9%81%D9%8A+%D8%B5%D8%A7%D9%84%D8%A9+%D8%A7%D9%84%D8%AC%D9%84%D8%A7%D8%A1+%D8%A7%D9%84%D9%85%D9%84%D9%83%D9%8A%D8%A9&location=%D8%B5%D8%A7%D9%84%D8%A9+%D8%A7%D9%84%D8%AC%D9%84%D8%A7%D8%A1+%D8%A7%D9%84%D9%85%D9%84%D9%83%D9%8A%D8%A9" target="_blank" class="calendar-btn">
+          📅 إضافة الحفل لتقويم جوجل
+        </a>
+      </header>
+
+      <section class="card-section text-center">
+        <div class="bismillah">بسم الله الرحمن الرحيم</div>
+        <h2 class="couple-arabic">الآنسة أريج والمحامي محمد</h2>
+        <p class="invitation-text">
+          يتشرف الحاج عبد المحسن دبا والحاج عمران سكرية بدعوتكم لحضور عقد قران ولديهما
+        </p>
+        
+        <!-- صندوق القرآن الكريم -->
+        <div class="quran-box-custom">
+          <div class="icon">📖 💍</div>
+          <p>" وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً "</p>
+        </div>
+
+        <p class="event-date-details">
+          وذلك بمشيئة الله تعالى يوم<br>
+          <strong>الأربعاء 21 أكتوبر 2026</strong><br>
+          عند الساعة السابعة والنصف مساءً
+        </p>
+        <p class="hall-name">في <span>صالة الجلاء الملكية بالمزة</span></p>
+      </section>
+
+      <!-- العداد التنازلي -->
+      <section class="card-section text-center">
+        <h3 class="section-title">المتبقي على الحفل</h3>
+        <div class="countdown-timer" id="countdown">
+          <div class="time-box"><span id="days">00</span><small>يوم</small></div>
+          <div class="time-box"><span id="hours">00</span><small>ساعة</small></div>
+          <div class="time-box"><span id="minutes">00</span><small>دقيقة</small></div>
+          <div class="time-box"><span id="seconds">00</span><small>ثانية</small></div>
+        </div>
+      </section>
+
+      <!-- برنامج الحفل -->
+      <section class="card-section">
+        <h3 class="section-title text-center">برنامج الحفل</h3>
+        <div class="timeline">
+          <div class="timeline-row">
+            <span class="time">07:30 مساءً</span>
+            <div class="line-node"></div>
+            <span class="event">استقبال الضيوف</span>
+          </div>
+          <div class="timeline-row">
+            <span class="time">08:30 مساءً</span>
+            <div class="line-node"></div>
+            <span class="event">مراسم عقد القران</span>
+          </div>
+          <div class="timeline-row">
+            <span class="time">09:30 مساءً</span>
+            <div class="line-node"></div>
+            <span class="event">بدء الاحتفال والزفة</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- موقع الحفل -->
+      <section class="card-section text-center">
+        <h3 class="section-title">موقع الحفل</h3>
+        <div>
+          <p style="font-size: 22px; font-weight: bold; margin: 5px 0;">صالة الجلاء الملكية - المزة</p>
+          <a href="https://maps.google.com/?q=Al+Jalaa+Damascus" target="_blank" class="map-btn">
+            📍 فتح الموقع على خرائط جوجل
+          </a>
+        </div>
+      </section>
+
+      <!-- تأكيد الحضور (مربوط بـ Formspree) -->
+      <section class="card-section text-center">
+        <h3 class="section-title">تأكيد الحضور</h3>
+        
+        <div id="rsvpContainer">
+          <form id="customRsvpForm" class="rsvp-form" action="https://formspree.io/f/xgaowyqv" method="POST">
+            <div class="input-group">
+              <label>الاسم الكامل:</label>
+              <input type="text" name="name" id="guestName" required placeholder="يرجى كتابة الاسم الكريم">
+            </div>
+
+            <div class="input-group">
+              <label>هل ستتمكن من الحضور؟</label>
+              <div class="radio-options">
+                <label class="radio-btn">
+                  <input type="radio" name="attendance" value="يشرفني الحضور ببالغ السرور" checked>
+                  <span>يشرفني الحضور ببالغ السرور</span>
+                </label>
+                <label class="radio-btn">
+                  <input type="radio" name="attendance" value="أعتذر عن الحضور لظروف طارئة">
+                  <span>أعتذر عن الحضور لظروف طارئة</span>
+                </label>
+              </div>
+            </div>
+
+            <button type="submit" id="submitBtn" class="submit-btn">إرسال تأكيد الحضور</button>
+          </form>
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <script>
+    // 1. تثبيت رسالة الشكر بعد إرسال الـ Form
+    function renderThankYou(name, isAttending) {
+      const container = document.getElementById('rsvpContainer');
+      if (!container) return;
+      const text = isAttending 
+        ? 'أسعدتنا كثيراً بتأكيد حضورك، وننتظر بشوق مشاركتك فرحتنا في هذا اليوم المميز!' 
+        : 'نشكرك على إبلاغنا، ونتمنى أن تجمعنا المناسبات السعيدة القادمة بإذن الله.';
+      
+      container.innerHTML = `
+        <div class="thank-you-box">
+          <h4>شكراً لك يا ${name}! ❤️</h4>
+          <p>${text}</p>
+        </div>
+      `;
+    }
+
+    // 2. فحص ذاكرة الهاتف (LocalStorage) لمنع إرسال الاستمارة تكراراً لنفس الشخص
+    function checkPreviousResponse() {
+      const savedRSVP = localStorage.getItem('user_has_responded');
+      if (savedRSVP) {
+        try {
+          const data = JSON.parse(savedRSVP);
+          if (data && data.name) {
+            renderThankYou(data.name, data.isAttending);
+          }
+        } catch(e) {
+          localStorage.removeItem('user_has_responded');
+        }
+      }
+    }
+
+    // 3. فتح بطاقة الدعوة عند الضغط عليها (مع ضمان عدم التجمد أبداً)
+    const envelopeCard = document.getElementById('envelopeCard');
+    if (envelopeCard) {
+      envelopeCard.addEventListener('click', function() {
+        this.classList.add('open-anim');
+
+        setTimeout(() => {
+          const envelopeScene = document.getElementById('envelopeScene');
+          const invitationContent = document.getElementById('invitationContent');
+          const floatingCouple = document.getElementById('floatingCouple');
+
+          if (envelopeScene) envelopeScene.style.display = 'none';
+          if (invitationContent) invitationContent.classList.remove('hidden');
+          if (floatingCouple) floatingCouple.classList.remove('hidden');
+
+          checkPreviousResponse();
+        }, 500);
+      });
+    }
+
+    // 4. دوران الخاتم الذهبي عند التمرير بشكل سلس وآمن
+    window.addEventListener('scroll', () => {
+      const ring = document.getElementById('floatingCouple');
+      if (ring && !ring.classList.contains('hidden')) {
+        const scrollPos = window.scrollY;
+        ring.style.transform = `translateY(${-scrollPos * 0.1}px) rotate(${scrollPos * 0.5}deg)`;
+      }
+    });
+
+    // 5. العداد التنازلي الدقيق لموعد الحفل
+    const targetDate = new Date("October 21, 2026 19:30:00").getTime();
+    setInterval(() => {
+      const now = new Date().getTime();
+      const difference = targetDate - now;
+
+      if (difference > 0) {
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        const dEl = document.getElementById("days");
+        const hEl = document.getElementById("hours");
+        const mEl = document.getElementById("minutes");
+        const sEl = document.getElementById("seconds");
+
+        if(dEl) dEl.innerText = days < 10 ? '0' + days : days;
+        if(hEl) hEl.innerText = hours < 10 ? '0' + hours : hours;
+        if(mEl) mEl.innerText = minutes < 10 ? '0' + minutes : minutes;
+        if(sEl) sEl.innerText = seconds < 10 ? '0' + seconds : seconds;
+      }
+    }, 1000);
+
+    // 6. معالجة إرسال النموذج (Formspree) بشكل آمن تماماً
+    const form = document.getElementById('customRsvpForm');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        const btn = document.getElementById('submitBtn');
+        if (btn) {
+          btn.innerText = 'جاري الإرسال...';
+          btn.disabled = true;
+        }
+
+        const nameInput = document.getElementById('guestName');
+        const name = nameInput ? nameInput.value : 'ضيفنا الكريم';
+        const statusInput = document.querySelector('input[name="attendance"]:checked');
+        const statusValue = statusInput ? statusInput.value : 'يشرفني الحضور ببالغ السرور';
+        const isAttending = statusValue.includes("يشرفني");
+
+        const data = new FormData(form);
+
+        fetch(form.action, {
+          method: form.method,
+          body: data,
+          headers: {
+            'Accept': 'application/json'
+          }
+        }).then(() => {
+          localStorage.setItem('user_has_responded', JSON.stringify({ name: name, isAttending: isAttending }));
+          renderThankYou(name, isAttending);
+        }).catch(() => {
+          localStorage.setItem('user_has_responded', JSON.stringify({ name: name, isAttending: isAttending }));
+          renderThankYou(name, isAttending);
+        });
+      });
+    }
+  </script>
+</body>
+</html>
