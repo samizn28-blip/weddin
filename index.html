@@ -212,14 +212,20 @@
       background: linear-gradient(135deg, #f0e4d2, #dcc4a3);
       border: 1px solid #cbb28d;
       border-radius: 16px;
-      padding: 35px 20px;
+      padding: 25px 20px;
       margin: 25px 0;
       box-shadow: inset 0 0 15px rgba(255,255,255,0.6), 0 8px 20px rgba(0,0,0,0.06);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
-    .quran-box-custom .icon {
-      font-size: 55px;
-      margin-bottom: 10px;
+    .quran-box-custom .quran-img {
+      max-width: 180px;
+      height: auto;
+      margin-bottom: 15px;
+      display: block;
     }
 
     .quran-box-custom p {
@@ -417,7 +423,7 @@
     <!-- المشهد الأول: صورة بطاقة الدعوة -->
     <section class="image-card-scene" id="envelopeScene">
       <div class="image-card-wrapper">
-        <img src="start.png" alt="بطاقة دعوة أريج ومحمد" onerror="this.style.display='none'; this.parentNode.innerHTML='<div style=\'color:#e6cb9a; padding:20px; text-align:center;\'>💌 بطاقة دعوة أريج ومحمد</div>';">
+        <img src="start.png" alt="بطاقة دعوة أريج ومحمد">
       </div>
       <div class="tap-hint">اضغط هنا أو على الصورة لفتح التفاصيل ✨</div>
     </section>
@@ -442,7 +448,7 @@
         </p>
         
         <div class="quran-box-custom">
-          <div class="icon">📖 💍</div>
+          <img src="quran-rings.png" alt="القرآن والخواتم" class="quran-img">
           <p>" وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً "</p>
         </div>
 
@@ -498,7 +504,7 @@
         </div>
       </section>
 
-      <!-- تأكيد الحضور (مربوط بـ Formspree) -->
+      <!-- تأكيد الحضور -->
       <section class="card-section text-center">
         <h3 class="section-title">تأكيد الحضور</h3>
         
@@ -583,7 +589,7 @@
       }, 500);
     });
 
-    // حركة العريس والعروس
+    // حركة العريس والعروس عند التمرير
     window.addEventListener('scroll', () => {
       const groom = document.getElementById('groomAvatar');
       const bride = document.getElementById('brideAvatar');
@@ -629,7 +635,7 @@
       }
     }, 1000);
 
-    // Formspree AJAX
+    // إرسال النموذج Formspree
     const form = document.getElementById('customRsvpForm');
     form.addEventListener('submit', function(e) {
       e.preventDefault();
