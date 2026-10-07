@@ -184,24 +184,41 @@
       color: #4a403a;
     }
 
-    /* المربع الذهبي */
-    .quran-box-custom {
-      background: linear-gradient(135deg, #f3ebd9, #e5d2b7);
-      border: 1px solid #cbb28d;
-      border-radius: 16px;
-      padding: 18px 15px;
-      margin: 20px 0;
-      box-shadow: inset 0 0 10px rgba(255,255,255,0.8), 0 5px 15px rgba(0,0,0,0.05);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
+ /* المربع الذهبي مع صورة القرآن كخلفية مندمجة */
+.quran-box-custom {
+  border: 1px solid #cbb28d;
+  border-radius: 16px;
+  padding: 35px 20px;
+  margin: 20px 0;
+  box-shadow: inset 0 0 10px rgba(255,255,255,0.8), 0 5px 15px rgba(0,0,0,0.05);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+
+  /* دمج صورة القرآن بالخلفية مع طبقة لونية ذهبية ناعمة */
+  background-image: linear-gradient(rgba(243, 235, 217, 0.85), rgba(229, 210, 183, 0.85)), url('quran-rings.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.quran-box-custom p {
+  font-size: 22px;
+  color: #5a431c;
+  margin: 0;
+  font-family: 'Aref Ruqaa', serif;
+  position: relative;
+  z-index: 2; /* ليبقى النص واضحاً فوق الخلفية */
+}
     }
 
     /* صورة القرآن والخواتم */
     .quran-box-custom img {
-      max-width: 220px;
-      max-height: 150px;
+      max-width: 280px;
+      max-height: 180px;
       width: auto;
       height: auto;
       object-fit: contain;
