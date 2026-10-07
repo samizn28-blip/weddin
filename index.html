@@ -639,3 +639,18 @@
       }).then(response => {
         if (response.ok) {
           localStorage.setItem('user_has_responded', JSON.stringify({ name: name, isAttending: isAttending }));
+          renderThankYou(name, isAttending);
+        } else {
+          alert('حدث خطأ أثناء الإرسال، يرجى المحاولة مرة أخرى.');
+          btn.innerText = 'إرسال تأكيد الحضور';
+          btn.disabled = false;
+        }
+      }).catch(error => {
+        alert('يرجى التأكد من الاتصال بالإنترنت والمحاولة مجدداً.');
+        btn.innerText = 'إرسال تأكيد الحضور';
+        btn.disabled = false;
+      });
+    });
+  </script>
+</body>
+</html>
