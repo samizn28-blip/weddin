@@ -7,6 +7,9 @@
   
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
   
+  <!-- مكتبة الورد والبريق المتطاير (Confetti) -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+  
   <style>
     * { box-sizing: border-box; }
 
@@ -143,7 +146,7 @@
       color: #4a403a;
     }
 
-    /* مربع القرآن الكريم الفاخر مع الخلفية الدمشقية */
+    /* مربع القرآن الكريم */
     .quran-box-custom {
       width: 100%;
       border: 1px solid #cbb28d;
@@ -357,7 +360,6 @@
     <!-- المشهد الأول: صورة بطاقة الدعوة -->
     <section class="image-card-scene" id="envelopeScene">
       <div class="image-card-wrapper" id="envelopeCard">
-        <!-- ملاحظة: إذا لم تظهر الصورة، تأكد أن اسمها start.png وفي نفس المجلد -->
         <img src="start.png" alt="بطاقة دعوة أريج ومحمد" onerror="this.src='https://via.placeholder.com/340x500/2c241d/dfc38c?text=اضغط+هنا+لفتح+الدعوة';">
       </div>
       <div class="tap-hint">اضغط على الدعوة لفتح التفاصيل ✨</div>
@@ -370,7 +372,7 @@
         <h1 class="names-title">أريج & محمد</h1>
         <p class="hero-date">21 أكتوبر 2026<br>الساعة 7:30 مساءً</p>
         
-        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%D8%AD%D9%81%D9%84+%D8%B2%D9%81%D8%A7%D9%81+%D8%A3%D8%B1%D9%8A%D8%AC+%D9%88%D9%85%D8%AD%D9%85%D8%AF&dates=20261021T193000/20261021T233000&details=%D9%86%D8%AA%D8%B4%D8%B1%D9%81+%D8%A8%D8%AD%D8%B6%D9%88%D8%B1%D9%83%D9%85+%D8%AD%D9%81%D9%84+%D8%B2%D9%81%D8%A7%D9%81+%D8%A3%D8%B1%D9%8A%D8%AC+%D9%88%D9%85%D8%AD%D9%85%D8%AF+%D9%81%D9%8A+%D8%B5%D8%A7%D9%84%D8%A9+%D8%A7%D9%84%D8%AC%D9%84%D8%A7%D8%A1+%D8%A7%D9%84%D9%85%D9%84%D9%83%D9%8A%D8%A9&location=%D8%B5%D8%A7%D9%84%D8%A9+%D8%A7%D9%84%D8%AC%D9%84%D8%A7%D8%A1+%D8%A7%D9%84%D9%85%D9%84%D9%83%D9%8A%D8%A9" target="_blank" class="calendar-btn">
+        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%D8%AD%D9%81%D9%84+%D8%B2%D9%81%D8%A7%D9%89+%D8%A3%D8%B1%D9%8A%D8%AC+%D9%88%D9%85%D8%AD%D9%85%D8%AF&dates=20261021T193000/20261021T233000&details=%D9%86%D8%AA%D8%B4%D8%B1%D9%81+%D8%A8%D8%AD%D8%B6%D9%88%D8%B1%D9%83%D9%85+%D8%AD%D9%81%D9%84+%D8%B2%D9%81%D8%A7%D9%89+%D8%A3%D8%B1%D9%8A%D8%AC+%D9%88%D9%85%D8%AD%D9%85%D8%AF+%D9%81%D9%8A+%D8%B5%D8%A7%D9%84%D8%A9+%D8%A7%D9%84%D8%AC%D9%84%D8%A7%D8%A1+%D8%A7%D9%84%D9%85%D9%84%D9%83%D9%8A%D8%A9&location=%D8%B5%D8%A7%D9%84%D8%A9+%D8%A7%D9%84%D8%AC%D9%84%D8%A7%D8%A1+%D8%A7%D9%84%D9%85%D9%84%D9%83%D9%8A%D8%A9" target="_blank" class="calendar-btn">
           📅 إضافة الحفل لتقويم جوجل
         </a>
       </header>
@@ -491,7 +493,7 @@
       `;
     }
 
-    // 2. فحص ذاكرة الهاتف (LocalStorage) لمنع إرسال الاستمارة تكراراً لنفس الشخص
+    // 2. فحص ذاكرة الهاتف (LocalStorage) لمنع تكرار الإرسال
     function checkPreviousResponse() {
       const savedRSVP = localStorage.getItem('user_has_responded');
       if (savedRSVP) {
@@ -506,7 +508,21 @@
       }
     }
 
-    // 3. فتح بطاقة الدعوة عند الضغط عليها (مع ضمان عدم التجمد أبداً)
+    // 3. تأثير البريق والورد المتطاير عند فتح الدعوة
+    function triggerConfetti() {
+      if (typeof confetti === 'function') {
+        var duration = 3 * 1000;
+        var animationEnd = Date.now() + duration;
+
+        (function frame() {
+          confetti({ particleCount: 4, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#d4af37', '#f3e5ab', '#e0a96d', '#ffffff'] });
+          confetti({ particleCount: 4, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#d4af37', '#f3e5ab', '#e0a96d', '#ffffff'] });
+          if (Date.now() < animationEnd) requestAnimationFrame(frame);
+        }());
+      }
+    }
+
+    // 4. فتح بطاقة الدعوة عند الضغط عليها
     const envelopeCard = document.getElementById('envelopeCard');
     if (envelopeCard) {
       envelopeCard.addEventListener('click', function() {
@@ -521,12 +537,13 @@
           if (invitationContent) invitationContent.classList.remove('hidden');
           if (floatingCouple) floatingCouple.classList.remove('hidden');
 
+          triggerConfetti(); // إطلاق البريق والورد فور الفتح
           checkPreviousResponse();
         }, 500);
       });
     }
 
-    // 4. دوران الخاتم الذهبي عند التمرير بشكل سلس وآمن
+    // 5. دوران الخاتم الذهبي عند التمرير بشكل سلس
     window.addEventListener('scroll', () => {
       const ring = document.getElementById('floatingCouple');
       if (ring && !ring.classList.contains('hidden')) {
@@ -535,7 +552,7 @@
       }
     });
 
-    // 5. العداد التنازلي الدقيق لموعد الحفل
+    // 6. العداد التنازلي لموعد الحفل
     const targetDate = new Date("October 21, 2026 19:30:00").getTime();
     setInterval(() => {
       const now = new Date().getTime();
@@ -559,7 +576,7 @@
       }
     }, 1000);
 
-    // 6. معالجة إرسال النموذج (Formspree) بشكل آمن تماماً
+    // 7. معالجة إرسال النموذج (Formspree) بشكل آمن
     const form = document.getElementById('customRsvpForm');
     if (form) {
       form.addEventListener('submit', function(e) {
