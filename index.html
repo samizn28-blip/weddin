@@ -5,15 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>دعوة زفاف - أريج ومحمد</title>
   
-  <!-- وسوم معاينة الرابط على وسائل التواصل الاجتماعي -->
   <meta property="og:title" content="دعوة زفاف - أريج ومحمد">
   <meta property="og:description" content="تشرفنا دعوتكم لحضور حفل زفاف أريج ومحمد في صالة الجلاء الملكية بالمزة">
   <meta property="og:image" content="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=600&q=80">
   <meta property="og:type" content="website">
 
   <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Aref+Ruqaa:wght@400;700&display=swap" rel="stylesheet">
-  
-  <!-- مكتبة الورد والبريق المتطاير (Confetti) -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   
   <style>
@@ -42,7 +39,6 @@
       overflow: hidden;
     }
 
-    /* أيقونة الخاتم الذهبي المتحركة عند التمرير */
     .floating-couple {
       position: fixed;
       right: 20px;
@@ -54,7 +50,6 @@
       filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
     }
 
-    /* ================= المشهد الأول: بطاقة الصورة ================= */
     .image-card-scene {
       height: 100vh;
       background: radial-gradient(circle, #1c1612 0%, #0b0908 100%);
@@ -102,9 +97,8 @@
       50% { transform: translateY(-8px); }
     }
 
-    /* ================= المشهد الثاني: صفحة الدعوة ================= */
     .invitation-content {
-      background: rgba(251, 246, 236, 0.95);
+      background: rgba(244, 234, 213, 0.96);
       min-height: 100vh;
     }
 
@@ -114,8 +108,8 @@
       border-bottom: 1px solid rgba(140, 106, 45, 0.3);
       position: relative;
       overflow: hidden;
-      background-color: #ecdcc8;
-      background-image: linear-gradient(rgba(235, 218, 194, 0.50), rgba(235, 218, 194, 0.50)), url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=600&q=80');
+      background-color: #d9c2a3;
+      background-image: linear-gradient(rgba(235, 218, 194, 0.75), rgba(235, 218, 194, 0.75)), url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=600&q=80');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -124,26 +118,26 @@
     .names-title {
       font-family: 'Aref Ruqaa', serif;
       font-size: 46px;
-      color: #6e4f1f;
+      color: #5c4118;
       margin: 0;
       text-shadow: 0 2px 4px rgba(255,255,255,0.9);
     }
 
     .hero-date {
       font-size: 19px;
-      color: #4a3b2c;
+      color: #3b2e22;
       margin-top: 12px;
       font-weight: bold;
     }
 
     .card-section {
       padding: 30px 22px;
-      border-bottom: 1px solid rgba(200, 175, 140, 0.5);
+      border-bottom: 1px solid rgba(180, 150, 120, 0.4);
     }
 
     .bismillah {
       font-size: 24px;
-      color: #7a5c28;
+      color: #6a4c1f;
       margin-bottom: 15px;
       font-weight: bold;
     }
@@ -158,14 +152,13 @@
     .invitation-text {
       font-size: 19px;
       line-height: 1.8;
-      color: #42352c;
+      color: #382b22;
       margin-bottom: 15px;
     }
 
-    /* صندوق القرآن الكريم بخلفية أوضح وأجمل */
     .quran-box-custom {
       width: 100%;
-      border: 1px solid #b89d73;
+      border: 1px solid #a88d63;
       border-radius: 16px;
       padding: 35px 20px;
       margin: 25px 0;
@@ -176,7 +169,7 @@
       justify-content: center;
       position: relative;
       overflow: hidden;
-      background-image: linear-gradient(rgba(244, 232, 215, 0.95), rgba(235, 218, 196, 0.95)), url('quran-rings.png');
+      background-image: linear-gradient(rgba(230, 212, 188, 0.95), rgba(218, 196, 168, 0.95)), url('quran-rings.png');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -184,7 +177,7 @@
 
     .quran-box-custom p {
       font-size: 23px;
-      color: #4e3816;
+      color: #3d2a0e;
       margin: 0;
       font-family: 'Aref Ruqaa', serif;
       text-align: center;
@@ -198,8 +191,8 @@
       justify-content: center;
       gap: 8px;
       background: #ffffff;
-      color: #7a5c28;
-      border: 1px solid #d8c3a5;
+      color: #6a4c1f;
+      border: 1px solid #c8b090;
       padding: 10px 18px;
       border-radius: 20px;
       font-size: 15px;
@@ -212,7 +205,7 @@
     .event-date-details {
       font-size: 19px;
       line-height: 1.8;
-      color: #7a5c28;
+      color: #6a4c1f;
       margin: 20px 0;
     }
 
@@ -225,362 +218,10 @@
     .section-title {
       font-family: 'Aref Ruqaa', serif;
       font-size: 28px;
-      color: #7a5c28;
+      color: #6a4c1f;
       margin-top: 0;
       margin-bottom: 20px;
     }
 
     .countdown-timer {
       display: flex;
-      justify-content: center;
-      gap: 10px;
-      direction: rtl;
-    }
-
-    .time-box {
-      background: rgba(238, 222, 204, 0.95);
-      padding: 10px;
-      border-radius: 10px;
-      min-width: 68px;
-      border: 1px solid #d4bc9f;
-    }
-
-    .time-box span {
-      display: block;
-      font-size: 22px;
-      font-weight: bold;
-      color: #7a5c28;
-    }
-
-    .time-box small { font-size: 12px; color: #555; }
-
-    .map-btn {
-      display: inline-block;
-      background: #7a5c28;
-      color: #fff;
-      text-decoration: none;
-      padding: 12px 26px;
-      border-radius: 25px;
-      font-size: 16px;
-      margin-top: 15px;
-    }
-
-    .rsvp-form { display: flex; flex-direction: column; gap: 15px; text-align: right; }
-
-    .input-group label { display: block; font-size: 16px; margin-bottom: 5px; color: #444; }
-
-    .input-group input[type="text"] {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #c8b39c;
-      border-radius: 8px;
-      background: #fff;
-      font-size: 15px;
-      font-family: 'Amiri', serif;
-    }
-
-    .radio-options { display: flex; flex-direction: column; gap: 10px; margin-top: 5px; }
-
-    .radio-btn { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 15px; }
-
-    .submit-btn {
-      background: #7a5c28;
-      color: #fff;
-      border: none;
-      padding: 13px;
-      font-size: 17px;
-      border-radius: 25px;
-      cursor: pointer;
-      font-family: 'Amiri', serif;
-      transition: background 0.3s;
-    }
-
-    .submit-btn:disabled {
-      background: #a89985;
-      cursor: not-allowed;
-    }
-
-    .thank-you-box {
-      background: #ecdcc8;
-      padding: 20px;
-      border-radius: 12px;
-      border: 1px solid #c8b39c;
-      text-align: center;
-      animation: fadeIn 0.5s ease-in-out;
-    }
-
-    .thank-you-box h4 {
-      font-size: 22px;
-      color: #7a5c28;
-      margin: 0 0 8px;
-      font-family: 'Aref Ruqaa', serif;
-    }
-
-    .thank-you-box p {
-      font-size: 16px;
-      color: #3e322b;
-      margin: 0;
-      line-height: 1.6;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .text-center { text-align: center; }
-    .hidden { display: none !important; }
-  </style>
-</head>
-<body>
-
-  <!-- الخاتم الذهبي المتحرك -->
-  <div id="floatingCouple" class="floating-couple hidden">💍</div>
-
-  <div class="invitation-container">
-
-    <!-- المشهد الأول: صورة بطاقة الدعوة -->
-    <section class="image-card-scene" id="envelopeScene">
-      <div class="image-card-wrapper" id="envelopeCard">
-        <img src="start.png" alt="بطاقة دعوة أريج ومحمد" onerror="this.src='https://via.placeholder.com/340x500/1c1612/dfc38c?text=اضغط+هنا+لفتح+الدعوة';">
-      </div>
-      <div class="tap-hint">اضغط على الدعوة لفتح التفاصيل ✨</div>
-    </section>
-
-    <!-- المشهد الثاني: صفحة الدعوة التفاعلية -->
-    <main class="invitation-content hidden" id="invitationContent">
-      
-      <header class="hero-header">
-        <h1 class="names-title">أريج & محمد</h1>
-        <p class="hero-date">21 أكتوبر 2026<br>الساعة 7:30 مساءً</p>
-      </header>
-
-      <section class="card-section text-center">
-        <div class="bismillah">بسم الله الرحمن الرحيم</div>
-        <h2 class="couple-arabic">  <br> يتشرف<br>
-          الحاج عبد المحسن دبا&nbsp;&nbsp;&nbsp;و&nbsp;&nbsp;&nbsp;الحاج عمران سكرية<br> 
-          بدعوتكم لحضور عقد قران ولديهما الكريمينا لآنسة أريج والمحامي محمد</h2>
-        
-        <!-- نقل النص المكتوب تحت الأسماء إلى مكان أنيق وبارز هنا -->
-        <p class="invitation-text">
-         
-        </p>
-        
-        <!-- صندوق القرآن الكريم بخلفية أوضح -->
-        <div class="quran-box-custom">
-          <p>" وَجَعَلَ بَيْنَكُم مَّوَدَّةً وَرَحْمَةً "</p>
-        </div>
-
-        <p class="event-date-details">
-          وذلك بمشيئة الله تعالى يوم<br>
-          <strong>الأربعاء 21 أكتوبر 2026</strong><br>
-          عند الساعة السابعة والنصف مساءً
-        </p>
-        <p class="hall-name">في <span>صالة الجلاء الملكية بالمزة</span></p>
-      </section>
-
-      <!-- العداد التنازلي -->
-      <section class="card-section text-center">
-        <h3 class="section-title">المتبقي على الحفل</h3>
-        <div class="countdown-timer" id="countdown">
-          <div class="time-box"><span id="days">00</span><small>يوم</small></div>
-          <div class="time-box"><span id="hours">00</span><small>ساعة</small></div>
-          <div class="time-box"><span id="minutes">00</span><small>دقيقة</small></div>
-          <div class="time-box"><span id="seconds">00</span><small>ثانية</small></div>
-        </div>
-      </section>
-
-      <!-- موعد القدوم وتاريخ التقويم -->
-      <section class="card-section text-center">
-        <h3 class="section-title">موعد القدوم</h3>
-        <p class="invitation-text" style="margin-bottom: 15px;">
-
-        </p>
-        <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%D8%AD%D9%81%D9%84+%D8%B2%D9%81%D8%A7%D9%89+%D8%A3%D8%B1%D9%8A%D8%AC+%D9%88%D9%85%D8%AD%D9%85%D8%df&dates=20261021T193000/20261021T233000&details=%D9%86%D8%AA%D8%B4%D8%B1%D9%81+%D8%A8%D8%AD%D8%B6%D9%88%D8%B1%D9%83%D9%85+%D8%AD%D9%81%D9%84+%D8%B2%D9%81%D8%A7%D9%89+%D8%A3%D8%B1%D9%8A%D8%AC+%D9%88%D9%85%D8%AD%D9%85%D8%df" target="_blank" class="calendar-btn">
-          📌 تثبيت الموعد في التقويم الشخصي
-        </a>
-      </section>
-
-      <!-- موقع الحفل -->
-      <section class="card-section text-center">
-        <h3 class="section-title">موقع الحفل</h3>
-        <div>
-          <p style="font-size: 20px; font-weight: bold; margin: 5px 0;">صالة الجلاء الملكية - المزة</p>
-          <a href="https://maps.google.com/?q=Al+Jalaa+Damascus" target="_blank" class="map-btn">
-            📍 فتح الموقع على خرائط جوجل
-          </a>
-        </div>
-      </section>
-
-      <!-- تأكيد الحضور (مربوط بـ Formspree) -->
-      <section class="card-section text-center">
-        <h3 class="section-title">تأكيد الحضور</h3>
-        
-        <div id="rsvpContainer">
-          <form id="customRsvpForm" class="rsvp-form" action="https://formspree.io/f/xgaowyqv" method="POST">
-            <div class="input-group">
-              <label>الاسم الكامل:</label>
-              <input type="text" name="name" id="guestName" required placeholder="يرجى كتابة الاسم الكريم">
-            </div>
-
-            <div class="input-group">
-              <label>هل ستتمكن من الحضور؟</label>
-              <div class="radio-options">
-                <label class="radio-btn">
-                  <input type="radio" name="attendance" value="يشرفني الحضور ببالغ السرور" checked>
-                  <span>يشرفني الحضور ببالغ السرور</span>
-                </label>
-                <label class="radio-btn">
-                  <input type="radio" name="attendance" value="أعتذر عن الحضور لظروف طارئة">
-                  <span>أعتذر عن الحضور لظروف طارئة</span>
-                </label>
-              </div>
-            </div>
-
-            <button type="submit" id="submitBtn" class="submit-btn">إرسال تأكيد الحضور</button>
-          </form>
-        </div>
-      </section>
-
-    </main>
-
-  </div>
-
-  <script>
-    // 1. تثبيت رسالة الشكر بعد إرسال الـ Form
-    function renderThankYou(name, isAttending) {
-      const container = document.getElementById('rsvpContainer');
-      if (!container) return;
-      const text = isAttending 
-        ? 'أسعدتنا كثيراً بتأكيد حضورك، وننتظر بشوق مشاركتك فرحتنا في هذا اليوم المميز!' 
-        : 'نشكرك على إبلاغنا، ونتمنى أن تجمعنا المناسبات السعيدة القادمة بإذن الله.';
-      
-      container.innerHTML = `
-        <div class="thank-you-box">
-          <h4>شكراً لك يا ${name}! ❤️</h4>
-          <p>${text}</p>
-        </div>
-      `;
-    }
-
-    // 2. قفل الرابط ومنع تكرار الإرسال أو فتحه مرة أخرى كدعوة جديدة للمستخدم
-    function checkPreviousResponse() {
-      const savedRSVP = localStorage.getItem('wedding_invitation_used');
-      if (savedRSVP) {
-        try {
-          const data = JSON.parse(savedRSVP);
-          if (data && data.name) {
-            renderThankYou(data.name, data.isAttending);
-          }
-        } catch(e) {
-          localStorage.removeItem('wedding_invitation_used');
-        }
-      }
-    }
-
-    // 3. تأثير البريق والورد المتطاير عند فتح الدعوة
-    function triggerConfetti() {
-      if (typeof confetti === 'function') {
-        var duration = 3 * 1000;
-        var animationEnd = Date.now() + duration;
-
-        (function frame() {
-          confetti({ particleCount: 4, angle: 60, spread: 55, origin: { x: 0 }, colors: ['#d4af37', '#f3e5ab', '#e0a96d', '#ffffff'] });
-          confetti({ particleCount: 4, angle: 120, spread: 55, origin: { x: 1 }, colors: ['#d4af37', '#f3e5ab', '#e0a96d', '#ffffff'] });
-          if (Date.now() < animationEnd) requestAnimationFrame(frame);
-        }());
-      }
-    }
-
-    // 4. فتح بطاقة الدعوة عند الضغط عليها
-    const envelopeCard = document.getElementById('envelopeCard');
-    if (envelopeCard) {
-      envelopeCard.addEventListener('click', function() {
-        this.classList.add('open-anim');
-
-        setTimeout(() => {
-          const envelopeScene = document.getElementById('envelopeScene');
-          const invitationContent = document.getElementById('invitationContent');
-          const floatingCouple = document.getElementById('floatingCouple');
-
-          if (envelopeScene) envelopeScene.style.display = 'none';
-          if (invitationContent) invitationContent.classList.remove('hidden');
-          if (floatingCouple) floatingCouple.classList.remove('hidden');
-
-          triggerConfetti(); 
-          checkPreviousResponse();
-        }, 500);
-      });
-    }
-
-    // 5. دوران الخاتم الذهبي عند التمرير بشكل سلس
-    window.addEventListener('scroll', () => {
-      const ring = document.getElementById('floatingCouple');
-      if (ring && !ring.classList.contains('hidden')) {
-        const scrollPos = window.scrollY;
-        ring.style.transform = `translateY(${-scrollPos * 0.1}px) rotate(${scrollPos * 0.5}deg)`;
-      }
-    });
-
-    // 6. العداد التنازلي لموعد الحفل
-    const targetDate = new Date("October 21, 2026 19:30:00").getTime();
-    setInterval(() => {
-      const now = new Date().getTime();
-      const difference = targetDate - now;
-
-      if (difference > 0) {
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-        const dEl = document.getElementById("days");
-        const hEl = document.getElementById("hours");
-        const mEl = document.getElementById("minutes");
-        const sEl = document.getElementById("seconds");
-
-        if(dEl) dEl.innerText = days < 10 ? '0' + days : days;
-        if(hEl) hEl.innerText = hours < 10 ? '0' + hours : hours;
-        if(mEl) mEl.innerText = minutes < 10 ? '0' + minutes : minutes;
-        if(sEl) sEl.innerText = seconds < 10 ? '0' + seconds : seconds;
-      }
-    }, 1000);
-
-    // 7. معالجة إرسال النموذج وحفظ الحالة لمنع إعادة استخدامه
-    const form = document.getElementById('customRsvpForm');
-    if (form) {
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
-
-        const btn = document.getElementById('submitBtn');
-        if (btn) {
-          btn.innerText = 'جاري الإرسال...';
-          btn.disabled = true;
-        }
-
-        const nameInput = document.getElementById('guestName');
-        const name = nameInput ? nameInput.value : 'ضيفنا الكريم';
-        const statusInput = document.querySelector('input[name="attendance"]:checked');
-        const statusValue = statusInput ? statusInput.value : 'يشرفني الحضور ببالغ السرور';
-        const isAttending = statusValue.includes("يشرفني");
-
-        const data = new FormData(form);
-
-        fetch(form.action, {
-          method: form.method,
-          body: data,
-          headers: {
-            'Accept': 'application/json'
-          }
-        }).then(() => {
-          localStorage.setItem('wedding_invitation_used', JSON.stringify({ name: name, isAttending: isAttending }));
-          renderThankYou(name, isAttending);
-        }).catch(() => {
-          localStorage.setItem('wedding_invitation_used', JSON.stringify({ name: name, isAttending: isAttending }));
-          renderThankYou(name, isAttending);
-        });
-      });
-    }
-  </script>
-</body>
-</html>
