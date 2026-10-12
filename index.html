@@ -9,7 +9,6 @@
   
   <!-- مكتبة الورد والبريق المتطاير (Confetti) -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   
   <style>
     * { box-sizing: border-box; }
@@ -104,29 +103,37 @@
     }
 
     .hero-header {
-      padding: 60px 20px;
+      padding: 40px 20px;
       text-align: center;
       border-bottom: 1px solid rgba(140, 106, 45, 0.2);
       position: relative;
       overflow: hidden;
       background-color: #f4eae0;
-      background-image: linear-gradient(rgba(255, 253, 250, 0.88), rgba(255, 253, 250, 0.88)), url('rings-couple.png');
+      background-image: linear-gradient(rgba(255, 253, 250, 0.88), rgba(255, 253, 250, 0.88));
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
     }
-    
-    
 
     .names-title {
       font-family: 'Aref Ruqaa', serif;
-      font-size: 46px;
+      font-size: 42px;
       color: #7a5c28;
       margin: 0;
     }
 
+    .hero-img-box {
+      width: 100px;
+      height: 100px;
+      margin: 15px auto;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid #dfc38c;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+
     .hero-date {
-      font-size: 20px;
+      font-size: 18px;
       color: #555;
       margin-top: 10px;
       font-weight: bold;
@@ -138,20 +145,20 @@
     }
 
     .bismillah {
-      font-size: 24px;
+      font-size: 22px;
       color: #8c6a2d;
       margin-bottom: 15px;
     }
 
     .couple-arabic {
       font-family: 'Aref Ruqaa', serif;
-      font-size: 30px;
+      font-size: 28px;
       color: #2c2523;
       margin-bottom: 15px;
     }
 
     .invitation-text {
-      font-size: 19px;
+      font-size: 18px;
       line-height: 1.8;
       color: #4a403a;
     }
@@ -161,7 +168,7 @@
       width: 100%;
       border: 1px solid #cbb28d;
       border-radius: 16px;
-      padding: 35px 20px;
+      padding: 30px 20px;
       margin: 25px 0;
       box-shadow: inset 0 0 15px rgba(255,255,255,0.8), 0 8px 20px rgba(0,0,0,0.06);
       display: flex;
@@ -170,21 +177,21 @@
       justify-content: center;
       position: relative;
       overflow: hidden;
-     background-image: linear-gradient(rgba(252, 249, 242, 0.9), rgba(244, 234, 224, 0.9)), url('quran-rings.png');
-background-size: cover;
-background-position: center;
-background-repeat: no-repeat;
+      background-image: linear-gradient(rgba(252, 249, 242, 0.9), rgba(244, 234, 224, 0.9));
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
     .quran-box-custom .icon {
-      font-size: 45px;
+      font-size: 38px;
       margin-bottom: 10px;
       position: relative;
       z-index: 2;
     }
 
     .quran-box-custom p {
-      font-size: 22px;
+      font-size: 20px;
       color: #5a431c;
       margin: 0;
       font-family: 'Aref Ruqaa', serif;
@@ -203,7 +210,7 @@ background-repeat: no-repeat;
       border: 1px solid #d8c3a5;
       padding: 10px 18px;
       border-radius: 20px;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: bold;
       text-decoration: none;
       margin-top: 15px;
@@ -211,21 +218,21 @@ background-repeat: no-repeat;
     }
 
     .event-date-details {
-      font-size: 20px;
+      font-size: 18px;
       line-height: 1.8;
       color: #7a5c28;
       margin: 20px 0;
     }
 
     .hall-name span {
-      font-size: 25px;
+      font-size: 22px;
       font-weight: bold;
       color: #222;
     }
 
     .section-title {
       font-family: 'Aref Ruqaa', serif;
-      font-size: 30px;
+      font-size: 28px;
       color: #8c6a2d;
       margin-top: 0;
       margin-bottom: 20px;
@@ -248,7 +255,7 @@ background-repeat: no-repeat;
 
     .time-box span {
       display: block;
-      font-size: 24px;
+      font-size: 22px;
       font-weight: bold;
       color: #7a5c28;
     }
@@ -269,7 +276,7 @@ background-repeat: no-repeat;
       color: #8c6a2d;
       width: 90px;
       text-align: left;
-      font-size: 18px;
+      font-size: 16px;
     }
 
     .line-node {
@@ -282,7 +289,7 @@ background-repeat: no-repeat;
     .timeline-row .event {
       width: 150px;
       text-align: right;
-      font-size: 18px;
+      font-size: 16px;
     }
 
     .map-btn {
@@ -292,13 +299,13 @@ background-repeat: no-repeat;
       text-decoration: none;
       padding: 12px 26px;
       border-radius: 25px;
-      font-size: 18px;
+      font-size: 16px;
       margin-top: 15px;
     }
 
     .rsvp-form { display: flex; flex-direction: column; gap: 15px; text-align: right; }
 
-    .input-group label { display: block; font-size: 17px; margin-bottom: 5px; color: #444; }
+    .input-group label { display: block; font-size: 16px; margin-bottom: 5px; color: #444; }
 
     .input-group input[type="text"] {
       width: 100%;
@@ -306,20 +313,20 @@ background-repeat: no-repeat;
       border: 1px solid #d3c4b1;
       border-radius: 8px;
       background: #fff;
-      font-size: 16px;
+      font-size: 15px;
       font-family: 'Amiri', serif;
     }
 
     .radio-options { display: flex; flex-direction: column; gap: 10px; margin-top: 5px; }
 
-    .radio-btn { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 16px; }
+    .radio-btn { display: flex; align-items: center; gap: 8px; cursor: pointer; font-size: 15px; }
 
     .submit-btn {
       background: #8c6a2d;
       color: #fff;
       border: none;
       padding: 13px;
-      font-size: 18px;
+      font-size: 17px;
       border-radius: 25px;
       cursor: pointer;
       font-family: 'Amiri', serif;
@@ -341,14 +348,14 @@ background-repeat: no-repeat;
     }
 
     .thank-you-box h4 {
-      font-size: 24px;
+      font-size: 22px;
       color: #7a5c28;
       margin: 0 0 8px;
       font-family: 'Aref Ruqaa', serif;
     }
 
     .thank-you-box p {
-      font-size: 17px;
+      font-size: 16px;
       color: #444;
       margin: 0;
       line-height: 1.6;
@@ -383,9 +390,9 @@ background-repeat: no-repeat;
       
       <header class="hero-header">
         <h1 class="names-title">أريج & محمد</h1>
-        <div style="width: 120px ; height ; margin: 15px auto; box-shodow : 0 6px 15px rgba(0,0,0,0,15);"> 
+        <div class="hero-img-box"> 
            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=300&q=80" alt="خواتم أريج ومحمد" style="width: 100%; height: 100%; object-fit: cover;">
-          </div>
+        </div>
         <p class="hero-date">21 أكتوبر 2026<br>الساعة 7:30 مساءً</p>
         
         <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=%D8%AD%D9%81%D9%84+%D8%B2%D9%81%D8%A7%D9%89+%D8%A3%D8%B1%D9%8A%D8%AC+%D9%88%D9%85%D8%AD%D9%85%D8%AF&dates=20261021T193000/20261021T233000&details=%D9%86%D8%AA%D8%B4%D8%B1%D9%81+%D8%A8%D8%AD%D8%B6%D9%88%D8%B1%D9%83%D9%85+%D8%AD%D9%81%D9%84+%D8%B2%D9%81%D8%A7%D9%89+%D8%A3%D8%B1%D9%8A%D8%AC+%D9%88%D9%85%D8%AD%D9%85%D8%AF+%D9%81%D9%8A+%D8%B5%D8%A7%D9%84%D8%A9+%D8%A7%D9%84%D8%AC%D9%84%D8%A7%D8%A1+%D8%A7%D9%84%D9%85%D9%84%D9%83%D9%8A%D8%A9&location=%D8%B5%D8%A7%D9%84%D8%A9+%D8%A7%D9%84%D8%AC%D9%84%D8%A7%D8%A1+%D8%A7%D9%84%D9%85%D9%84%D9%83%D9%8A%D8%A9" target="_blank" class="calendar-btn">
@@ -451,7 +458,7 @@ background-repeat: no-repeat;
       <section class="card-section text-center">
         <h3 class="section-title">موقع الحفل</h3>
         <div>
-          <p style="font-size: 22px; font-weight: bold; margin: 5px 0;">صالة الجلاء الملكية - المزة</p>
+          <p style="font-size: 20px; font-weight: bold; margin: 5px 0;">صالة الجلاء الملكية - المزة</p>
           <a href="https://maps.google.com/?q=Al+Jalaa+Damascus" target="_blank" class="map-btn">
             📍 فتح الموقع على خرائط جوجل
           </a>
@@ -553,7 +560,7 @@ background-repeat: no-repeat;
           if (invitationContent) invitationContent.classList.remove('hidden');
           if (floatingCouple) floatingCouple.classList.remove('hidden');
 
-          triggerConfetti(); // إطلاق البريق والورد فور الفتح
+          triggerConfetti(); 
           checkPreviousResponse();
         }, 500);
       });
