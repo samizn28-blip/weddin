@@ -401,8 +401,8 @@
         <div id="rsvpContainer">
           <form id="customRsvpForm" class="rsvp-form" action="https://formspree.io/f/xgaowyqv" method="POST">
             <div class="input-group">
-              <label>الاسم الكامل:</label>
-              <input type="text" name="name" id="guestName" required placeholder="يرجى كتابة الاسم الكريم">
+              <label>الاسم الكامل (الاسم والكنية بالعربية):</label>
+              <input type="text" name="name" id="guestName" required placeholder="مثال: أحمد الأحمد">
             </div>
 
             <div class="input-group">
@@ -429,7 +429,6 @@
   </div>
 
   <script>
-    // 1. تثبيت رسالة الشكر ومنع تعديل الإرسال مجدداً على نفس الجهاز
     function renderThankYou(name, isAttending) {
       const container = document.getElementById('rsvpContainer');
       if (!container) return;
@@ -445,7 +444,6 @@
       `;
     }
 
-    // 2. التحقق من الرد السابق بمجرد فتح الصفحة
     function checkPreviousResponse() {
       const savedRSVP = localStorage.getItem('wedding_invitation_used');
       if (savedRSVP) {
@@ -460,7 +458,6 @@
       }
     }
 
-    // 3. تأثير البريق والورد المتطاير عند فتح الدعوة
     function triggerConfetti() {
       if (typeof confetti === 'function') {
         var duration = 3 * 1000;
@@ -474,7 +471,6 @@
       }
     }
 
-    // 4. فتح بطاقة الدعوة عند الضغط عليها
     const envelopeCard = document.getElementById('envelopeCard');
     if (envelopeCard) {
       envelopeCard.addEventListener('click', function() {
@@ -495,7 +491,6 @@
       });
     }
 
-    // 5. دوران الخاتم الذهبي عند التمرير بشكل سلس
     window.addEventListener('scroll', () => {
       const ring = document.getElementById('floatingCouple');
       if (ring && !ring.classList.contains('hidden')) {
@@ -504,7 +499,6 @@
       }
     });
 
-    // 6. العداد التنازلي لموعد الحفل
     const targetDate = new Date("October 21, 2026 19:30:00").getTime();
     setInterval(() => {
       const now = new Date().getTime();
@@ -528,11 +522,29 @@
       }
     }, 1000);
 
-    // 7. معالجة إرسال النموذج وقفل الفورم نهائياً على الجهاز لمنع التكرار
     const form = document.getElementById('customRsvpForm');
     if (form) {
       form.addEventListener('submit', function(e) {
         e.preventDefault();
+
+        const nameInput = document.getElementById('guestName');
+        const nameValue = nameInput ? nameInput.value.trim() : '';
+
+        // التحقق من أن الاسم باللغة العربية حصراً (يمنع الحروف الإنجليزية والرموز الغريبة)
+        const arabicRegex = /^[\u0600-\u06FF\s]+$/;
+        if (!arabicRegex.test(nameValue)) {
+          alert('خطأ: يرجى كتابة الاسم والكنية باللغة العربية حصراً دون استخدام الحروف الإنجليزية.');
+          nameInput.focus();
+          return;
+        }
+
+        // التحقق من وجود الاسم والكنية (أن يتضمن مسافة واحدة على الأقل بين الكلمات)
+        const words = nameValue.split(/\s+/);
+        if (words.length < 2) {
+          alert('خطأ: يرجى إدخال الاسم الثلاثي أو الاسم مع الكنية بشكل كامل.');
+          nameInput.focus();
+          return;
+        }
 
         const btn = document.getElementById('submitBtn');
         if (btn) {
@@ -540,8 +552,6 @@
           btn.disabled = true;
         }
 
-        const nameInput = document.getElementById('guestName');
-        const name = nameInput ? nameInput.value : 'ضيفنا الكريم';
         const statusInput = document.querySelector('input[name="attendance"]:checked');
         const statusValue = statusInput ? statusInput.value : 'يشرفني الحضور ببالغ السرور';
         const isAttending = statusValue.includes("يشرفني");
@@ -555,11 +565,11 @@
             'Accept': 'application/json'
           }
         }).then(() => {
-          localStorage.setItem('wedding_invitation_used', JSON.stringify({ name: name, isAttending: isAttending }));
-          renderThankYou(name, isAttending);
+          localStorage.setItem('wedding_invitation_used', JSON.stringify({ name: nameValue, isAttending: isAttending }));
+          renderThankYou(nameValue, isAttending);
         }).catch(() => {
-          localStorage.setItem('wedding_invitation_used', JSON.stringify({ name: name, isAttending: isAttending }));
-          renderThankYou(name, isAttending);
+          localStorage.setItem('wedding_invitation_used', JSON.stringify({ name: nameValue, isAttending: isAttending }));
+          renderThankYou(nameValue, isAttending);
         });
       });
     }
