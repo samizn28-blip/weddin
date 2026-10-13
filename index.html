@@ -357,8 +357,8 @@
         </p>
         
         <div class="quran-box-custom">
-         
-          <p>" "</p>
+           <div class="quran-box-custom">
+          <p> </p>
         </div>
         </div>
 
@@ -546,7 +546,7 @@
         // التحقق من وجود الاسم والكنية (أن يتضمن مسافة واحدة على الأقل بين الكلمات)
         const words = nameValue.split(/\s+/);
         if (words.length < 2) {
-          alert('خطأ: يرجى إدخال الاسم الثلاثي أو الاسم مع الكنية بشكل كامل.');
+          alert('خطأ: يرجى إدخال الاسم مع الكنية بشكل كامل.');
           nameInput.focus();
           return;
         }
