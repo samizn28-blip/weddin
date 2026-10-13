@@ -339,7 +339,12 @@
     </section>
 
     <main class="invitation-content hidden" id="invitationContent">
-      
+      <!-- زر التحكم بالموسيقى العائمة -->
+      <button id="audioControlBtn" style="position: fixed; top: 20px; left: 20px; z-index: 100; background: rgba(106, 76, 31, 0.8); color: #fff; border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px;">🔇</button>
+
+      <audio id="weddingAudio" loop>
+        <source src="music.mp3" type="audio/mpeg">
+      </audio>
       <header class="hero-header">
         <h1 class="names-title">أريج & محمد</h1>
         <p class="hero-date">21 تشرين الاول 2026<br>الساعة 7:30 مساءً</p>
@@ -465,6 +470,34 @@
     }
 
     function triggerConfetti() {
+      // --- إضافة كود تشغيل الصوت عند فتح البطاقة ---
+    const weddingAudio = document.getElementById('weddingAudio');
+    const audioBtn = document.getElementById('audioControlBtn');
+    let isPlaying = false;
+
+    if (weddingAudio) {
+      weddingAudio.play().then(() => {
+        isPlaying = true;
+        if(audioBtn) audioBtn.innerText = '🎵';
+      }).catch(err => {
+        console.log("Audio autoplay restricted by browser");
+      });
+    }
+
+    if (audioBtn && weddingAudio) {
+      audioBtn.addEventListener('click', () => {
+        if (isPlaying) {
+          weddingAudio.pause();
+          audioBtn.innerText = '🔇';
+          isPlaying = false;
+        } else {
+          weddingAudio.play();
+          audioBtn.innerText = '🎵';
+          isPlaying = true;
+        }
+      });
+    }
+    // ---------------------------------------------
       if (typeof confetti === 'function') {
         var duration = 3 * 1000;
         var animationEnd = Date.now() + duration;
