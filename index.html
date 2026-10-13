@@ -30,13 +30,15 @@
     }
 
     .invitation-container {
-      width: 100%;
-      max-width: 430px;
-      background: radial-gradient(circle at 50% 30%, #f4ead5 0%, #d9c2a3 70%, #bda17e 100%);
-      min-height: 100vh;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-      position: relative;
-      overflow: hidden;
+  width: 100%;
+  max-width: 430px;
+  background: radial-gradient(circle at 50% 30%, #f9f3e6 0%, #ecd7b5 70%, #d1b58e 100%);
+  min-height: 100vh;
+  box-shadow: 0 15px 50px rgba(0,0,0,0.8);
+  position: relative;
+  overflow: hidden;
+  border: 4px solid #dfc38c; /* الإطار الذهبي الملكي الخارجي */
+}
     }
 
     .floating-couple {
@@ -131,9 +133,23 @@
     }
 
     .card-section {
-      padding: 30px 22px;
-      border-bottom: 1px solid rgba(180, 150, 120, 0.4);
-    }
+  padding: 35px 22px;
+  border-bottom: 1px solid rgba(180, 150, 120, 0.3);
+  position: relative;
+}
+
+.card-section::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  bottom: 10px;
+  border: 1px dashed rgba(168, 141, 99, 0.4);
+  border-radius: 12px;
+  pointer-events: none;
+}
+    
 
     .bismillah {
       font-size: 24px;
